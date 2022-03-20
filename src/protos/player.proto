@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package protobuf;
+
+message Player {
+  required int32 id = 1;
+  optional string pseudo = 2;
+}
