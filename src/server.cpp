@@ -5,14 +5,20 @@
 #include <sys/time.h>
 #include "socket.h"
 #include "client.h"
+#include "room.pb.h"
 
 using namespace std;
 using namespace stdsock;
+using namespace protobuf;
 
 #define MAX_CLIENTS 3
 
 int main(int argc, char *argv[])
 {
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+    Room* room = new Room();
+    
     vector<StreamSocket*> clients;
 
     int port;
@@ -62,4 +68,6 @@ int main(int argc, char *argv[])
        thread th = std::thread(&TalkServer::talk, com);
        th.detach();
     }
+
+    google::protobuf::ShutdownProtobufLibrary();
 }
