@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/socket",
                 "${workspaceFolder}/libs/socket",
-                "${workspaceFolder}/src/client"
+                "${workspaceFolder}/src/client",
+                "${workspaceFolder}/src/protos"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
