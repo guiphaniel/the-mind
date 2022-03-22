@@ -5,6 +5,12 @@
 
 Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms) {}
 
+Client::~Client() {
+    delete socket;
+
+    google::protobuf::ShutdownProtobufLibrary();
+}
+
 void Client::talk() {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -21,9 +27,10 @@ void Client::talk() {
             clients->erase(std::remove(clients->begin(), clients->end(), this), clients->end());
             //fr
             cout << "Client disconnected of fd : " << socket->getSockfd() << endl;
-            delete socket;
 
-            break;
+            delete this;
+
+            return;
         }
 
         string token = msg.substr(0, 4);
@@ -46,16 +53,14 @@ void Client::talk() {
             socket->send("Your request hasn't been recognized\n");
         }
     }
-
-    google::protobuf::ShutdownProtobufLibrary();
-
-    return;
 }
 
 void Client::onDiscRqc() {
     RoomsListProto roomsList;
     for(Room* r : *rooms) {
         RoomProto* roomProto = roomsList.add_room();
+        roomProto->set_id(r->getId());
+        roomProto->set_name(r->getName());
         for(Client* c : *clients) {
             PlayerProto* player = roomProto->add_player();
             player->set_id(c->getId());
