@@ -54,20 +54,20 @@ struct TableStruct_room_2eproto {
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_room_2eproto;
-namespace protobuf {
+namespace protos {
 class RoomProto;
 struct RoomProtoDefaultTypeInternal;
 extern RoomProtoDefaultTypeInternal _RoomProto_default_instance_;
-}  // namespace protobuf
+}  // namespace protos
 PROTOBUF_NAMESPACE_OPEN
-template<> ::protobuf::RoomProto* Arena::CreateMaybeMessage<::protobuf::RoomProto>(Arena*);
+template<> ::protos::RoomProto* Arena::CreateMaybeMessage<::protos::RoomProto>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
-namespace protobuf {
+namespace protos {
 
 // ===================================================================
 
 class RoomProto final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.RoomProto) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protos.RoomProto) */ {
  public:
   inline RoomProto() : RoomProto(nullptr) {}
   ~RoomProto() override;
@@ -168,7 +168,7 @@ class RoomProto final :
   void InternalSwap(RoomProto* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protobuf.RoomProto";
+    return "protos.RoomProto";
   }
   protected:
   explicit RoomProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -192,22 +192,22 @@ class RoomProto final :
     kNameFieldNumber = 2,
     kIdFieldNumber = 1,
   };
-  // repeated .protobuf.PlayerProto player = 3;
+  // repeated .protos.PlayerProto player = 3;
   int player_size() const;
   private:
   int _internal_player_size() const;
   public:
   void clear_player();
-  ::protobuf::PlayerProto* mutable_player(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::PlayerProto >*
+  ::protos::PlayerProto* mutable_player(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::PlayerProto >*
       mutable_player();
   private:
-  const ::protobuf::PlayerProto& _internal_player(int index) const;
-  ::protobuf::PlayerProto* _internal_add_player();
+  const ::protos::PlayerProto& _internal_player(int index) const;
+  ::protos::PlayerProto* _internal_add_player();
   public:
-  const ::protobuf::PlayerProto& player(int index) const;
-  ::protobuf::PlayerProto* add_player();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::PlayerProto >&
+  const ::protos::PlayerProto& player(int index) const;
+  ::protos::PlayerProto* add_player();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::PlayerProto >&
       player() const;
 
   // optional string name = 2;
@@ -241,7 +241,7 @@ class RoomProto final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:protobuf.RoomProto)
+  // @@protoc_insertion_point(class_scope:protos.RoomProto)
  private:
   class _Internal;
 
@@ -250,7 +250,7 @@ class RoomProto final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::PlayerProto > player_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::PlayerProto > player_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::int32 id_;
   friend struct ::TableStruct_room_2eproto;
@@ -282,7 +282,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 RoomProto::_internal_id() const {
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 RoomProto::id() const {
-  // @@protoc_insertion_point(field_get:protobuf.RoomProto.id)
+  // @@protoc_insertion_point(field_get:protos.RoomProto.id)
   return _internal_id();
 }
 inline void RoomProto::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -291,7 +291,7 @@ inline void RoomProto::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
 }
 inline void RoomProto::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:protobuf.RoomProto.id)
+  // @@protoc_insertion_point(field_set:protos.RoomProto.id)
 }
 
 // optional string name = 2;
@@ -307,7 +307,7 @@ inline void RoomProto::clear_name() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& RoomProto::name() const {
-  // @@protoc_insertion_point(field_get:protobuf.RoomProto.name)
+  // @@protoc_insertion_point(field_get:protos.RoomProto.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
@@ -315,11 +315,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void RoomProto::set_name(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000001u;
  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:protobuf.RoomProto.name)
+  // @@protoc_insertion_point(field_set:protos.RoomProto.name)
 }
 inline std::string* RoomProto::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:protobuf.RoomProto.name)
+  // @@protoc_insertion_point(field_mutable:protos.RoomProto.name)
   return _s;
 }
 inline const std::string& RoomProto::_internal_name() const {
@@ -334,7 +334,7 @@ inline std::string* RoomProto::_internal_mutable_name() {
   return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* RoomProto::release_name() {
-  // @@protoc_insertion_point(field_release:protobuf.RoomProto.name)
+  // @@protoc_insertion_point(field_release:protos.RoomProto.name)
   if (!_internal_has_name()) {
     return nullptr;
   }
@@ -349,43 +349,43 @@ inline void RoomProto::set_allocated_name(std::string* name) {
   }
   name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:protobuf.RoomProto.name)
+  // @@protoc_insertion_point(field_set_allocated:protos.RoomProto.name)
 }
 
-// repeated .protobuf.PlayerProto player = 3;
+// repeated .protos.PlayerProto player = 3;
 inline int RoomProto::_internal_player_size() const {
   return player_.size();
 }
 inline int RoomProto::player_size() const {
   return _internal_player_size();
 }
-inline ::protobuf::PlayerProto* RoomProto::mutable_player(int index) {
-  // @@protoc_insertion_point(field_mutable:protobuf.RoomProto.player)
+inline ::protos::PlayerProto* RoomProto::mutable_player(int index) {
+  // @@protoc_insertion_point(field_mutable:protos.RoomProto.player)
   return player_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::PlayerProto >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::PlayerProto >*
 RoomProto::mutable_player() {
-  // @@protoc_insertion_point(field_mutable_list:protobuf.RoomProto.player)
+  // @@protoc_insertion_point(field_mutable_list:protos.RoomProto.player)
   return &player_;
 }
-inline const ::protobuf::PlayerProto& RoomProto::_internal_player(int index) const {
+inline const ::protos::PlayerProto& RoomProto::_internal_player(int index) const {
   return player_.Get(index);
 }
-inline const ::protobuf::PlayerProto& RoomProto::player(int index) const {
-  // @@protoc_insertion_point(field_get:protobuf.RoomProto.player)
+inline const ::protos::PlayerProto& RoomProto::player(int index) const {
+  // @@protoc_insertion_point(field_get:protos.RoomProto.player)
   return _internal_player(index);
 }
-inline ::protobuf::PlayerProto* RoomProto::_internal_add_player() {
+inline ::protos::PlayerProto* RoomProto::_internal_add_player() {
   return player_.Add();
 }
-inline ::protobuf::PlayerProto* RoomProto::add_player() {
-  ::protobuf::PlayerProto* _add = _internal_add_player();
-  // @@protoc_insertion_point(field_add:protobuf.RoomProto.player)
+inline ::protos::PlayerProto* RoomProto::add_player() {
+  ::protos::PlayerProto* _add = _internal_add_player();
+  // @@protoc_insertion_point(field_add:protos.RoomProto.player)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::PlayerProto >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::PlayerProto >&
 RoomProto::player() const {
-  // @@protoc_insertion_point(field_list:protobuf.RoomProto.player)
+  // @@protoc_insertion_point(field_list:protos.RoomProto.player)
   return player_;
 }
 
@@ -395,7 +395,7 @@ RoomProto::player() const {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace protobuf
+}  // namespace protos
 
 // @@protoc_insertion_point(global_scope)
 

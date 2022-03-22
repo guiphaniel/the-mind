@@ -2,7 +2,7 @@ syntax = "proto2";
 
 import "room.proto";
 
-package protobuf;
+package protos;
 
 message RoomsListProto {
   repeated RoomProto room = 1;

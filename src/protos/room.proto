@@ -2,7 +2,7 @@ syntax = "proto2";
 
 import "player.proto";
 
-package protobuf;
+package protos;
 
 message RoomProto {
   required int32 id = 1;

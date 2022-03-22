@@ -16,7 +16,7 @@
 #include <google/protobuf/port_def.inc>
 
 PROTOBUF_PRAGMA_INIT_SEG
-namespace protobuf {
+namespace protos {
 constexpr PlayerProto::PlayerProto(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : pseudo_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
@@ -30,37 +30,37 @@ struct PlayerProtoDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PlayerProtoDefaultTypeInternal _PlayerProto_default_instance_;
-}  // namespace protobuf
+}  // namespace protos
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_player_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_player_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_player_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_player_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  PROTOBUF_FIELD_OFFSET(::protobuf::PlayerProto, _has_bits_),
-  PROTOBUF_FIELD_OFFSET(::protobuf::PlayerProto, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::protos::PlayerProto, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::protos::PlayerProto, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::protobuf::PlayerProto, id_),
-  PROTOBUF_FIELD_OFFSET(::protobuf::PlayerProto, pseudo_),
+  PROTOBUF_FIELD_OFFSET(::protos::PlayerProto, id_),
+  PROTOBUF_FIELD_OFFSET(::protos::PlayerProto, pseudo_),
   1,
   0,
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 7, sizeof(::protobuf::PlayerProto)},
+  { 0, 7, sizeof(::protos::PlayerProto)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::protobuf::_PlayerProto_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::protos::_PlayerProto_default_instance_),
 };
 
 const char descriptor_table_protodef_player_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014player.proto\022\010protobuf\")\n\013PlayerProto\022"
-  "\n\n\002id\030\001 \002(\005\022\016\n\006pseudo\030\002 \001(\t"
+  "\n\014player.proto\022\006protos\")\n\013PlayerProto\022\n\n"
+  "\002id\030\001 \002(\005\022\016\n\006pseudo\030\002 \001(\t"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_player_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_player_2eproto = {
-  false, false, 67, descriptor_table_protodef_player_2eproto, "player.proto", 
+  false, false, 65, descriptor_table_protodef_player_2eproto, "player.proto", 
   &descriptor_table_player_2eproto_once, nullptr, 0, 1,
   schemas, file_default_instances, TableStruct_player_2eproto::offsets,
   file_level_metadata_player_2eproto, file_level_enum_descriptors_player_2eproto, file_level_service_descriptors_player_2eproto,
@@ -71,7 +71,7 @@ PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable
 
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_player_2eproto(&descriptor_table_player_2eproto);
-namespace protobuf {
+namespace protos {
 
 // ===================================================================
 
@@ -96,7 +96,7 @@ PlayerProto::PlayerProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   if (!is_message_owned) {
     RegisterArenaDtor(arena);
   }
-  // @@protoc_insertion_point(arena_constructor:protobuf.PlayerProto)
+  // @@protoc_insertion_point(arena_constructor:protos.PlayerProto)
 }
 PlayerProto::PlayerProto(const PlayerProto& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -108,7 +108,7 @@ PlayerProto::PlayerProto(const PlayerProto& from)
       GetArenaForAllocation());
   }
   id_ = from.id_;
-  // @@protoc_insertion_point(copy_constructor:protobuf.PlayerProto)
+  // @@protoc_insertion_point(copy_constructor:protos.PlayerProto)
 }
 
 inline void PlayerProto::SharedCtor() {
@@ -117,7 +117,7 @@ id_ = 0;
 }
 
 PlayerProto::~PlayerProto() {
-  // @@protoc_insertion_point(destructor:protobuf.PlayerProto)
+  // @@protoc_insertion_point(destructor:protos.PlayerProto)
   if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -139,7 +139,7 @@ void PlayerProto::SetCachedSize(int size) const {
 }
 
 void PlayerProto::Clear() {
-// @@protoc_insertion_point(message_clear_start:protobuf.PlayerProto)
+// @@protoc_insertion_point(message_clear_start:protos.PlayerProto)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -174,7 +174,7 @@ const char* PlayerProto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           auto str = _internal_mutable_pseudo();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           #ifndef NDEBUG
-          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "protobuf.PlayerProto.pseudo");
+          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "protos.PlayerProto.pseudo");
           #endif  // !NDEBUG
           CHK_(ptr);
         } else goto handle_unusual;
@@ -205,7 +205,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* PlayerProto::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:protobuf.PlayerProto)
+  // @@protoc_insertion_point(serialize_to_array_start:protos.PlayerProto)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -221,7 +221,7 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::VerifyUTF8StringNamedField(
       this->_internal_pseudo().data(), static_cast<int>(this->_internal_pseudo().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SERIALIZE,
-      "protobuf.PlayerProto.pseudo");
+      "protos.PlayerProto.pseudo");
     target = stream->WriteStringMaybeAliased(
         2, this->_internal_pseudo(), target);
   }
@@ -230,12 +230,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:protobuf.PlayerProto)
+  // @@protoc_insertion_point(serialize_to_array_end:protos.PlayerProto)
   return target;
 }
 
 size_t PlayerProto::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:protobuf.PlayerProto)
+// @@protoc_insertion_point(message_byte_size_start:protos.PlayerProto)
   size_t total_size = 0;
 
   // required int32 id = 1;
@@ -279,7 +279,7 @@ void PlayerProto::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
 
 
 void PlayerProto::MergeFrom(const PlayerProto& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:protobuf.PlayerProto)
+// @@protoc_insertion_point(class_specific_merge_from_start:protos.PlayerProto)
   GOOGLE_DCHECK_NE(&from, this);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
@@ -298,7 +298,7 @@ void PlayerProto::MergeFrom(const PlayerProto& from) {
 }
 
 void PlayerProto::CopyFrom(const PlayerProto& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:protobuf.PlayerProto)
+// @@protoc_insertion_point(class_specific_copy_from_start:protos.PlayerProto)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -328,10 +328,10 @@ void PlayerProto::InternalSwap(PlayerProto* other) {
 }
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace protobuf
+}  // namespace protos
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::protobuf::PlayerProto* Arena::CreateMaybeMessage< ::protobuf::PlayerProto >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::protobuf::PlayerProto >(arena);
+template<> PROTOBUF_NOINLINE ::protos::PlayerProto* Arena::CreateMaybeMessage< ::protos::PlayerProto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::protos::PlayerProto >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

@@ -13,7 +13,7 @@
 
 using namespace std;
 using namespace stdsock;
-using namespace protobuf;
+using namespace protos;
 
 class Room;
 class Client
@@ -29,25 +29,21 @@ private:
     string pseudo;
 public:
     Client(vector<Client*>* clients, vector<Room*>* rooms);
+    ~Client();
 
     StreamSocket* getsocket() const { return socket;}
-
     void setsocket(StreamSocket* s) { socket=s; }
 
     vector<Client*>* getClients() const { return clients;}
-
     void setClients(vector<Client*>* cs) { clients = cs; }
 
     vector<Room*>* getRooms() const { return rooms;}
-
     void setRooms(vector<Room*>* rs) { rooms = rs; }
 
     int32_t getId() {return id;};
-
     void setId(int32_t _id) {id = _id;}
 
     string getPseudo() {return pseudo;};
-
     void setPseudo(string p) {pseudo = p;}
 
     void talk();

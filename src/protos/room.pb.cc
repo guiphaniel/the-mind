@@ -16,7 +16,7 @@
 #include <google/protobuf/port_def.inc>
 
 PROTOBUF_PRAGMA_INIT_SEG
-namespace protobuf {
+namespace protos {
 constexpr RoomProto::RoomProto(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : player_()
@@ -31,43 +31,43 @@ struct RoomProtoDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT RoomProtoDefaultTypeInternal _RoomProto_default_instance_;
-}  // namespace protobuf
+}  // namespace protos
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_room_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_room_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_room_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_room_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  PROTOBUF_FIELD_OFFSET(::protobuf::RoomProto, _has_bits_),
-  PROTOBUF_FIELD_OFFSET(::protobuf::RoomProto, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::protos::RoomProto, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::protos::RoomProto, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::protobuf::RoomProto, id_),
-  PROTOBUF_FIELD_OFFSET(::protobuf::RoomProto, name_),
-  PROTOBUF_FIELD_OFFSET(::protobuf::RoomProto, player_),
+  PROTOBUF_FIELD_OFFSET(::protos::RoomProto, id_),
+  PROTOBUF_FIELD_OFFSET(::protos::RoomProto, name_),
+  PROTOBUF_FIELD_OFFSET(::protos::RoomProto, player_),
   1,
   0,
   ~0u,
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 8, sizeof(::protobuf::RoomProto)},
+  { 0, 8, sizeof(::protos::RoomProto)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::protobuf::_RoomProto_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::protos::_RoomProto_default_instance_),
 };
 
 const char descriptor_table_protodef_room_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\nroom.proto\022\010protobuf\032\014player.proto\"L\n\t"
-  "RoomProto\022\n\n\002id\030\001 \002(\005\022\014\n\004name\030\002 \001(\t\022%\n\006p"
-  "layer\030\003 \003(\0132\025.protobuf.PlayerProto"
+  "\n\nroom.proto\022\006protos\032\014player.proto\"J\n\tRo"
+  "omProto\022\n\n\002id\030\001 \002(\005\022\014\n\004name\030\002 \001(\t\022#\n\006pla"
+  "yer\030\003 \003(\0132\023.protos.PlayerProto"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_room_2eproto_deps[1] = {
   &::descriptor_table_player_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_room_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_room_2eproto = {
-  false, false, 114, descriptor_table_protodef_room_2eproto, "room.proto", 
+  false, false, 110, descriptor_table_protodef_room_2eproto, "room.proto", 
   &descriptor_table_room_2eproto_once, descriptor_table_room_2eproto_deps, 1, 1,
   schemas, file_default_instances, TableStruct_room_2eproto::offsets,
   file_level_metadata_room_2eproto, file_level_enum_descriptors_room_2eproto, file_level_service_descriptors_room_2eproto,
@@ -78,7 +78,7 @@ PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable
 
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_room_2eproto(&descriptor_table_room_2eproto);
-namespace protobuf {
+namespace protos {
 
 // ===================================================================
 
@@ -107,7 +107,7 @@ RoomProto::RoomProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   if (!is_message_owned) {
     RegisterArenaDtor(arena);
   }
-  // @@protoc_insertion_point(arena_constructor:protobuf.RoomProto)
+  // @@protoc_insertion_point(arena_constructor:protos.RoomProto)
 }
 RoomProto::RoomProto(const RoomProto& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -120,7 +120,7 @@ RoomProto::RoomProto(const RoomProto& from)
       GetArenaForAllocation());
   }
   id_ = from.id_;
-  // @@protoc_insertion_point(copy_constructor:protobuf.RoomProto)
+  // @@protoc_insertion_point(copy_constructor:protos.RoomProto)
 }
 
 inline void RoomProto::SharedCtor() {
@@ -129,7 +129,7 @@ id_ = 0;
 }
 
 RoomProto::~RoomProto() {
-  // @@protoc_insertion_point(destructor:protobuf.RoomProto)
+  // @@protoc_insertion_point(destructor:protos.RoomProto)
   if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -151,7 +151,7 @@ void RoomProto::SetCachedSize(int size) const {
 }
 
 void RoomProto::Clear() {
-// @@protoc_insertion_point(message_clear_start:protobuf.RoomProto)
+// @@protoc_insertion_point(message_clear_start:protos.RoomProto)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -187,12 +187,12 @@ const char* RoomProto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
           auto str = _internal_mutable_name();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           #ifndef NDEBUG
-          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "protobuf.RoomProto.name");
+          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "protos.RoomProto.name");
           #endif  // !NDEBUG
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // repeated .protobuf.PlayerProto player = 3;
+      // repeated .protos.PlayerProto player = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           ptr -= 1;
@@ -230,7 +230,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* RoomProto::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:protobuf.RoomProto)
+  // @@protoc_insertion_point(serialize_to_array_start:protos.RoomProto)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -246,12 +246,12 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::VerifyUTF8StringNamedField(
       this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SERIALIZE,
-      "protobuf.RoomProto.name");
+      "protos.RoomProto.name");
     target = stream->WriteStringMaybeAliased(
         2, this->_internal_name(), target);
   }
 
-  // repeated .protobuf.PlayerProto player = 3;
+  // repeated .protos.PlayerProto player = 3;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_player_size()); i < n; i++) {
     target = stream->EnsureSpace(target);
@@ -263,12 +263,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:protobuf.RoomProto)
+  // @@protoc_insertion_point(serialize_to_array_end:protos.RoomProto)
   return target;
 }
 
 size_t RoomProto::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:protobuf.RoomProto)
+// @@protoc_insertion_point(message_byte_size_start:protos.RoomProto)
   size_t total_size = 0;
 
   // required int32 id = 1;
@@ -281,7 +281,7 @@ size_t RoomProto::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .protobuf.PlayerProto player = 3;
+  // repeated .protos.PlayerProto player = 3;
   total_size += 1UL * this->_internal_player_size();
   for (const auto& msg : this->player_) {
     total_size +=
@@ -319,7 +319,7 @@ void RoomProto::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
 
 
 void RoomProto::MergeFrom(const RoomProto& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:protobuf.RoomProto)
+// @@protoc_insertion_point(class_specific_merge_from_start:protos.RoomProto)
   GOOGLE_DCHECK_NE(&from, this);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
@@ -339,7 +339,7 @@ void RoomProto::MergeFrom(const RoomProto& from) {
 }
 
 void RoomProto::CopyFrom(const RoomProto& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:protobuf.RoomProto)
+// @@protoc_insertion_point(class_specific_copy_from_start:protos.RoomProto)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -371,10 +371,10 @@ void RoomProto::InternalSwap(RoomProto* other) {
 }
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace protobuf
+}  // namespace protos
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::protobuf::RoomProto* Arena::CreateMaybeMessage< ::protobuf::RoomProto >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::protobuf::RoomProto >(arena);
+template<> PROTOBUF_NOINLINE ::protos::RoomProto* Arena::CreateMaybeMessage< ::protos::RoomProto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::protos::RoomProto >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

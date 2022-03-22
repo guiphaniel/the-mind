@@ -53,20 +53,20 @@ struct TableStruct_player_2eproto {
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_player_2eproto;
-namespace protobuf {
+namespace protos {
 class PlayerProto;
 struct PlayerProtoDefaultTypeInternal;
 extern PlayerProtoDefaultTypeInternal _PlayerProto_default_instance_;
-}  // namespace protobuf
+}  // namespace protos
 PROTOBUF_NAMESPACE_OPEN
-template<> ::protobuf::PlayerProto* Arena::CreateMaybeMessage<::protobuf::PlayerProto>(Arena*);
+template<> ::protos::PlayerProto* Arena::CreateMaybeMessage<::protos::PlayerProto>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
-namespace protobuf {
+namespace protos {
 
 // ===================================================================
 
 class PlayerProto final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.PlayerProto) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protos.PlayerProto) */ {
  public:
   inline PlayerProto() : PlayerProto(nullptr) {}
   ~PlayerProto() override;
@@ -167,7 +167,7 @@ class PlayerProto final :
   void InternalSwap(PlayerProto* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protobuf.PlayerProto";
+    return "protos.PlayerProto";
   }
   protected:
   explicit PlayerProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -221,7 +221,7 @@ class PlayerProto final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:protobuf.PlayerProto)
+  // @@protoc_insertion_point(class_scope:protos.PlayerProto)
  private:
   class _Internal;
 
@@ -261,7 +261,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 PlayerProto::_internal_id() const {
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PlayerProto::id() const {
-  // @@protoc_insertion_point(field_get:protobuf.PlayerProto.id)
+  // @@protoc_insertion_point(field_get:protos.PlayerProto.id)
   return _internal_id();
 }
 inline void PlayerProto::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -270,7 +270,7 @@ inline void PlayerProto::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) 
 }
 inline void PlayerProto::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:protobuf.PlayerProto.id)
+  // @@protoc_insertion_point(field_set:protos.PlayerProto.id)
 }
 
 // optional string pseudo = 2;
@@ -286,7 +286,7 @@ inline void PlayerProto::clear_pseudo() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& PlayerProto::pseudo() const {
-  // @@protoc_insertion_point(field_get:protobuf.PlayerProto.pseudo)
+  // @@protoc_insertion_point(field_get:protos.PlayerProto.pseudo)
   return _internal_pseudo();
 }
 template <typename ArgT0, typename... ArgT>
@@ -294,11 +294,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void PlayerProto::set_pseudo(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000001u;
  pseudo_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:protobuf.PlayerProto.pseudo)
+  // @@protoc_insertion_point(field_set:protos.PlayerProto.pseudo)
 }
 inline std::string* PlayerProto::mutable_pseudo() {
   std::string* _s = _internal_mutable_pseudo();
-  // @@protoc_insertion_point(field_mutable:protobuf.PlayerProto.pseudo)
+  // @@protoc_insertion_point(field_mutable:protos.PlayerProto.pseudo)
   return _s;
 }
 inline const std::string& PlayerProto::_internal_pseudo() const {
@@ -313,7 +313,7 @@ inline std::string* PlayerProto::_internal_mutable_pseudo() {
   return pseudo_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* PlayerProto::release_pseudo() {
-  // @@protoc_insertion_point(field_release:protobuf.PlayerProto.pseudo)
+  // @@protoc_insertion_point(field_release:protos.PlayerProto.pseudo)
   if (!_internal_has_pseudo()) {
     return nullptr;
   }
@@ -328,7 +328,7 @@ inline void PlayerProto::set_allocated_pseudo(std::string* pseudo) {
   }
   pseudo_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), pseudo,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:protobuf.PlayerProto.pseudo)
+  // @@protoc_insertion_point(field_set_allocated:protos.PlayerProto.pseudo)
 }
 
 #ifdef __GNUC__
@@ -337,7 +337,7 @@ inline void PlayerProto::set_allocated_pseudo(std::string* pseudo) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace protobuf
+}  // namespace protos
 
 // @@protoc_insertion_point(global_scope)
 

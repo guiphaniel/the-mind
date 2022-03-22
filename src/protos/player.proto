@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-package protobuf;
+package protos;
 
 message PlayerProto {
   required int32 id = 1;

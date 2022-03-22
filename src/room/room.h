@@ -17,6 +17,8 @@ class Room
 public:
     Room();
     ~Room();
+    int32_t getId(){return id;};
+    string getName(){return name;};
     vector<Client*>* getClients() { return clients; }
 private:
     int32_t id;

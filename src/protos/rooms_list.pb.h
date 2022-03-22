@@ -54,20 +54,20 @@ struct TableStruct_rooms_5flist_2eproto {
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_rooms_5flist_2eproto;
-namespace protobuf {
+namespace protos {
 class RoomsListProto;
 struct RoomsListProtoDefaultTypeInternal;
 extern RoomsListProtoDefaultTypeInternal _RoomsListProto_default_instance_;
-}  // namespace protobuf
+}  // namespace protos
 PROTOBUF_NAMESPACE_OPEN
-template<> ::protobuf::RoomsListProto* Arena::CreateMaybeMessage<::protobuf::RoomsListProto>(Arena*);
+template<> ::protos::RoomsListProto* Arena::CreateMaybeMessage<::protos::RoomsListProto>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
-namespace protobuf {
+namespace protos {
 
 // ===================================================================
 
 class RoomsListProto final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.RoomsListProto) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protos.RoomsListProto) */ {
  public:
   inline RoomsListProto() : RoomsListProto(nullptr) {}
   ~RoomsListProto() override;
@@ -168,7 +168,7 @@ class RoomsListProto final :
   void InternalSwap(RoomsListProto* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protobuf.RoomsListProto";
+    return "protos.RoomsListProto";
   }
   protected:
   explicit RoomsListProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -190,32 +190,32 @@ class RoomsListProto final :
   enum : int {
     kRoomFieldNumber = 1,
   };
-  // repeated .protobuf.RoomProto room = 1;
+  // repeated .protos.RoomProto room = 1;
   int room_size() const;
   private:
   int _internal_room_size() const;
   public:
   void clear_room();
-  ::protobuf::RoomProto* mutable_room(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::RoomProto >*
+  ::protos::RoomProto* mutable_room(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::RoomProto >*
       mutable_room();
   private:
-  const ::protobuf::RoomProto& _internal_room(int index) const;
-  ::protobuf::RoomProto* _internal_add_room();
+  const ::protos::RoomProto& _internal_room(int index) const;
+  ::protos::RoomProto* _internal_add_room();
   public:
-  const ::protobuf::RoomProto& room(int index) const;
-  ::protobuf::RoomProto* add_room();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::RoomProto >&
+  const ::protos::RoomProto& room(int index) const;
+  ::protos::RoomProto* add_room();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::RoomProto >&
       room() const;
 
-  // @@protoc_insertion_point(class_scope:protobuf.RoomsListProto)
+  // @@protoc_insertion_point(class_scope:protos.RoomsListProto)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::RoomProto > room_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::RoomProto > room_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_rooms_5flist_2eproto;
 };
@@ -230,40 +230,40 @@ class RoomsListProto final :
 #endif  // __GNUC__
 // RoomsListProto
 
-// repeated .protobuf.RoomProto room = 1;
+// repeated .protos.RoomProto room = 1;
 inline int RoomsListProto::_internal_room_size() const {
   return room_.size();
 }
 inline int RoomsListProto::room_size() const {
   return _internal_room_size();
 }
-inline ::protobuf::RoomProto* RoomsListProto::mutable_room(int index) {
-  // @@protoc_insertion_point(field_mutable:protobuf.RoomsListProto.room)
+inline ::protos::RoomProto* RoomsListProto::mutable_room(int index) {
+  // @@protoc_insertion_point(field_mutable:protos.RoomsListProto.room)
   return room_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::RoomProto >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::RoomProto >*
 RoomsListProto::mutable_room() {
-  // @@protoc_insertion_point(field_mutable_list:protobuf.RoomsListProto.room)
+  // @@protoc_insertion_point(field_mutable_list:protos.RoomsListProto.room)
   return &room_;
 }
-inline const ::protobuf::RoomProto& RoomsListProto::_internal_room(int index) const {
+inline const ::protos::RoomProto& RoomsListProto::_internal_room(int index) const {
   return room_.Get(index);
 }
-inline const ::protobuf::RoomProto& RoomsListProto::room(int index) const {
-  // @@protoc_insertion_point(field_get:protobuf.RoomsListProto.room)
+inline const ::protos::RoomProto& RoomsListProto::room(int index) const {
+  // @@protoc_insertion_point(field_get:protos.RoomsListProto.room)
   return _internal_room(index);
 }
-inline ::protobuf::RoomProto* RoomsListProto::_internal_add_room() {
+inline ::protos::RoomProto* RoomsListProto::_internal_add_room() {
   return room_.Add();
 }
-inline ::protobuf::RoomProto* RoomsListProto::add_room() {
-  ::protobuf::RoomProto* _add = _internal_add_room();
-  // @@protoc_insertion_point(field_add:protobuf.RoomsListProto.room)
+inline ::protos::RoomProto* RoomsListProto::add_room() {
+  ::protos::RoomProto* _add = _internal_add_room();
+  // @@protoc_insertion_point(field_add:protos.RoomsListProto.room)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::RoomProto >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::RoomProto >&
 RoomsListProto::room() const {
-  // @@protoc_insertion_point(field_list:protobuf.RoomsListProto.room)
+  // @@protoc_insertion_point(field_list:protos.RoomsListProto.room)
   return room_;
 }
 
@@ -273,7 +273,7 @@ RoomsListProto::room() const {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace protobuf
+}  // namespace protos
 
 // @@protoc_insertion_point(global_scope)
 
