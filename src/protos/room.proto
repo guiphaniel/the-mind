@@ -4,8 +4,8 @@ import "player.proto";
 
 package protobuf;
 
-message Room {
+message RoomProto {
   required int32 id = 1;
   optional string name = 2;
-  repeated Player players = 3;
+  repeated PlayerProto player = 3;
 }

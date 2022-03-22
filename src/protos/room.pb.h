@@ -55,35 +55,35 @@ struct TableStruct_room_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_room_2eproto;
 namespace protobuf {
-class Room;
-struct RoomDefaultTypeInternal;
-extern RoomDefaultTypeInternal _Room_default_instance_;
+class RoomProto;
+struct RoomProtoDefaultTypeInternal;
+extern RoomProtoDefaultTypeInternal _RoomProto_default_instance_;
 }  // namespace protobuf
 PROTOBUF_NAMESPACE_OPEN
-template<> ::protobuf::Room* Arena::CreateMaybeMessage<::protobuf::Room>(Arena*);
+template<> ::protobuf::RoomProto* Arena::CreateMaybeMessage<::protobuf::RoomProto>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace protobuf {
 
 // ===================================================================
 
-class Room final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.Room) */ {
+class RoomProto final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:protobuf.RoomProto) */ {
  public:
-  inline Room() : Room(nullptr) {}
-  ~Room() override;
-  explicit constexpr Room(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline RoomProto() : RoomProto(nullptr) {}
+  ~RoomProto() override;
+  explicit constexpr RoomProto(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  Room(const Room& from);
-  Room(Room&& from) noexcept
-    : Room() {
+  RoomProto(const RoomProto& from);
+  RoomProto(RoomProto&& from) noexcept
+    : RoomProto() {
     *this = ::std::move(from);
   }
 
-  inline Room& operator=(const Room& from) {
+  inline RoomProto& operator=(const RoomProto& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Room& operator=(Room&& from) noexcept {
+  inline RoomProto& operator=(RoomProto&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()) {
       InternalSwap(&from);
@@ -109,20 +109,20 @@ class Room final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Room& default_instance() {
+  static const RoomProto& default_instance() {
     return *internal_default_instance();
   }
-  static inline const Room* internal_default_instance() {
-    return reinterpret_cast<const Room*>(
-               &_Room_default_instance_);
+  static inline const RoomProto* internal_default_instance() {
+    return reinterpret_cast<const RoomProto*>(
+               &_RoomProto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(Room& a, Room& b) {
+  friend void swap(RoomProto& a, RoomProto& b) {
     a.Swap(&b);
   }
-  inline void Swap(Room* other) {
+  inline void Swap(RoomProto* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -130,7 +130,7 @@ class Room final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Room* other) {
+  void UnsafeArenaSwap(RoomProto* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -138,17 +138,17 @@ class Room final :
 
   // implements Message ----------------------------------------------
 
-  inline Room* New() const final {
-    return new Room();
+  inline RoomProto* New() const final {
+    return new RoomProto();
   }
 
-  Room* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Room>(arena);
+  RoomProto* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RoomProto>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const Room& from);
+  void CopyFrom(const RoomProto& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const Room& from);
+  void MergeFrom(const RoomProto& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
   public:
@@ -165,13 +165,13 @@ class Room final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(Room* other);
+  void InternalSwap(RoomProto* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "protobuf.Room";
+    return "protobuf.RoomProto";
   }
   protected:
-  explicit Room(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit RoomProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -188,27 +188,27 @@ class Room final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPlayersFieldNumber = 3,
+    kPlayerFieldNumber = 3,
     kNameFieldNumber = 2,
     kIdFieldNumber = 1,
   };
-  // repeated .protobuf.Player players = 3;
-  int players_size() const;
+  // repeated .protobuf.PlayerProto player = 3;
+  int player_size() const;
   private:
-  int _internal_players_size() const;
+  int _internal_player_size() const;
   public:
-  void clear_players();
-  ::protobuf::Player* mutable_players(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::Player >*
-      mutable_players();
+  void clear_player();
+  ::protobuf::PlayerProto* mutable_player(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::PlayerProto >*
+      mutable_player();
   private:
-  const ::protobuf::Player& _internal_players(int index) const;
-  ::protobuf::Player* _internal_add_players();
+  const ::protobuf::PlayerProto& _internal_player(int index) const;
+  ::protobuf::PlayerProto* _internal_add_player();
   public:
-  const ::protobuf::Player& players(int index) const;
-  ::protobuf::Player* add_players();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::Player >&
-      players() const;
+  const ::protobuf::PlayerProto& player(int index) const;
+  ::protobuf::PlayerProto* add_player();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::PlayerProto >&
+      player() const;
 
   // optional string name = 2;
   bool has_name() const;
@@ -241,7 +241,7 @@ class Room final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:protobuf.Room)
+  // @@protoc_insertion_point(class_scope:protobuf.RoomProto)
  private:
   class _Internal;
 
@@ -250,7 +250,7 @@ class Room final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::Player > players_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::PlayerProto > player_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::int32 id_;
   friend struct ::TableStruct_room_2eproto;
@@ -264,84 +264,84 @@ class Room final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// Room
+// RoomProto
 
 // required int32 id = 1;
-inline bool Room::_internal_has_id() const {
+inline bool RoomProto::_internal_has_id() const {
   bool value = (_has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline bool Room::has_id() const {
+inline bool RoomProto::has_id() const {
   return _internal_has_id();
 }
-inline void Room::clear_id() {
+inline void RoomProto::clear_id() {
   id_ = 0;
   _has_bits_[0] &= ~0x00000002u;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 Room::_internal_id() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoomProto::_internal_id() const {
   return id_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 Room::id() const {
-  // @@protoc_insertion_point(field_get:protobuf.Room.id)
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoomProto::id() const {
+  // @@protoc_insertion_point(field_get:protobuf.RoomProto.id)
   return _internal_id();
 }
-inline void Room::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void RoomProto::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _has_bits_[0] |= 0x00000002u;
   id_ = value;
 }
-inline void Room::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void RoomProto::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:protobuf.Room.id)
+  // @@protoc_insertion_point(field_set:protobuf.RoomProto.id)
 }
 
 // optional string name = 2;
-inline bool Room::_internal_has_name() const {
+inline bool RoomProto::_internal_has_name() const {
   bool value = (_has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline bool Room::has_name() const {
+inline bool RoomProto::has_name() const {
   return _internal_has_name();
 }
-inline void Room::clear_name() {
+inline void RoomProto::clear_name() {
   name_.ClearToEmpty();
   _has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& Room::name() const {
-  // @@protoc_insertion_point(field_get:protobuf.Room.name)
+inline const std::string& RoomProto::name() const {
+  // @@protoc_insertion_point(field_get:protobuf.RoomProto.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void Room::set_name(ArgT0&& arg0, ArgT... args) {
+void RoomProto::set_name(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000001u;
  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:protobuf.Room.name)
+  // @@protoc_insertion_point(field_set:protobuf.RoomProto.name)
 }
-inline std::string* Room::mutable_name() {
+inline std::string* RoomProto::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:protobuf.Room.name)
+  // @@protoc_insertion_point(field_mutable:protobuf.RoomProto.name)
   return _s;
 }
-inline const std::string& Room::_internal_name() const {
+inline const std::string& RoomProto::_internal_name() const {
   return name_.Get();
 }
-inline void Room::_internal_set_name(const std::string& value) {
+inline void RoomProto::_internal_set_name(const std::string& value) {
   _has_bits_[0] |= 0x00000001u;
   name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* Room::_internal_mutable_name() {
+inline std::string* RoomProto::_internal_mutable_name() {
   _has_bits_[0] |= 0x00000001u;
   return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* Room::release_name() {
-  // @@protoc_insertion_point(field_release:protobuf.Room.name)
+inline std::string* RoomProto::release_name() {
+  // @@protoc_insertion_point(field_release:protobuf.RoomProto.name)
   if (!_internal_has_name()) {
     return nullptr;
   }
   _has_bits_[0] &= ~0x00000001u;
   return name_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void Room::set_allocated_name(std::string* name) {
+inline void RoomProto::set_allocated_name(std::string* name) {
   if (name != nullptr) {
     _has_bits_[0] |= 0x00000001u;
   } else {
@@ -349,44 +349,44 @@ inline void Room::set_allocated_name(std::string* name) {
   }
   name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:protobuf.Room.name)
+  // @@protoc_insertion_point(field_set_allocated:protobuf.RoomProto.name)
 }
 
-// repeated .protobuf.Player players = 3;
-inline int Room::_internal_players_size() const {
-  return players_.size();
+// repeated .protobuf.PlayerProto player = 3;
+inline int RoomProto::_internal_player_size() const {
+  return player_.size();
 }
-inline int Room::players_size() const {
-  return _internal_players_size();
+inline int RoomProto::player_size() const {
+  return _internal_player_size();
 }
-inline ::protobuf::Player* Room::mutable_players(int index) {
-  // @@protoc_insertion_point(field_mutable:protobuf.Room.players)
-  return players_.Mutable(index);
+inline ::protobuf::PlayerProto* RoomProto::mutable_player(int index) {
+  // @@protoc_insertion_point(field_mutable:protobuf.RoomProto.player)
+  return player_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::Player >*
-Room::mutable_players() {
-  // @@protoc_insertion_point(field_mutable_list:protobuf.Room.players)
-  return &players_;
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::PlayerProto >*
+RoomProto::mutable_player() {
+  // @@protoc_insertion_point(field_mutable_list:protobuf.RoomProto.player)
+  return &player_;
 }
-inline const ::protobuf::Player& Room::_internal_players(int index) const {
-  return players_.Get(index);
+inline const ::protobuf::PlayerProto& RoomProto::_internal_player(int index) const {
+  return player_.Get(index);
 }
-inline const ::protobuf::Player& Room::players(int index) const {
-  // @@protoc_insertion_point(field_get:protobuf.Room.players)
-  return _internal_players(index);
+inline const ::protobuf::PlayerProto& RoomProto::player(int index) const {
+  // @@protoc_insertion_point(field_get:protobuf.RoomProto.player)
+  return _internal_player(index);
 }
-inline ::protobuf::Player* Room::_internal_add_players() {
-  return players_.Add();
+inline ::protobuf::PlayerProto* RoomProto::_internal_add_player() {
+  return player_.Add();
 }
-inline ::protobuf::Player* Room::add_players() {
-  ::protobuf::Player* _add = _internal_add_players();
-  // @@protoc_insertion_point(field_add:protobuf.Room.players)
+inline ::protobuf::PlayerProto* RoomProto::add_player() {
+  ::protobuf::PlayerProto* _add = _internal_add_player();
+  // @@protoc_insertion_point(field_add:protobuf.RoomProto.player)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::Player >&
-Room::players() const {
-  // @@protoc_insertion_point(field_list:protobuf.Room.players)
-  return players_;
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protobuf::PlayerProto >&
+RoomProto::player() const {
+  // @@protoc_insertion_point(field_list:protobuf.RoomProto.player)
+  return player_;
 }
 
 #ifdef __GNUC__

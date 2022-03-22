@@ -5,28 +5,24 @@
 #include <sys/time.h>
 #include "socket.h"
 #include "client.h"
-#include "room.pb.h"
+#include "room.h"
 
 using namespace std;
 using namespace stdsock;
-using namespace protobuf;
 
-#define MAX_CLIENTS 3
+#define MAX_CLIENTS 5
 
 int main(int argc, char *argv[])
-{
-    GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-    Room* room = new Room();
+{   
+    vector<Client*> clients;
+    vector<Room*> rooms;
     
-    vector<StreamSocket*> clients;
-
     int port;
     if(argc!=2 || sscanf(argv[1], "%d", &port)!=1)
     {
         printf("usage: %s port\n", argv[0]);
         // default port, if none provided
-        port= 3490;
+        port= 3390;
     }
 
     ConnectionPoint *server=new ConnectionPoint(port);
@@ -43,31 +39,27 @@ int main(int argc, char *argv[])
     // and preparing communication points
     while (true)
     {
-        TalkServer com;
+        StreamSocket *sock=server->accept();
 
-        StreamSocket *client=server->accept();
-
-        if (!client->valid()) {
-            delete client;
+        if (!sock->valid()) {
+            delete sock;
             continue;
         }
 
         if(clients.size() >= MAX_CLIENTS) {
-            client->send("The server is full, please come back later\n");
-            delete client;
+            sock->send("The server is full, please come back later\n");
+            delete sock;
             continue;
         }
 
-        cout << "Client connected on fd : " << client->getSockfd() << endl;
+        cout << "Client connected on fd : " << sock->getSockfd() << endl;
+
+        Client* client = new Client(&clients, &rooms);
+        client->setsocket(sock);
 
         clients.push_back(client);
 
-        com.setClient(client);
-        com.setClients(&clients);
-
-       thread th = std::thread(&TalkServer::talk, com);
+       thread th = std::thread(&Client::talk, client);
        th.detach();
     }
-
-    google::protobuf::ShutdownProtobufLibrary();
 }

@@ -4,7 +4,6 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/socket",
                 "${workspaceFolder}/libs/socket",
                 "${workspaceFolder}/src/client",
                 "${workspaceFolder}/src/protos"

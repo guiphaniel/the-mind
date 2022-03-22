@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+import "room.proto";
+
+package protobuf;
+
+message RoomsListProto {
+  repeated RoomProto room = 1;
+}

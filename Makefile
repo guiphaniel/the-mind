@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = 
 CFLAGS        = -pipe -O2 -pthread -D_REENTRANT -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -Ilibs/socket -Isrc/protos -Isrc/client -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -53,13 +53,17 @@ OBJECTS_DIR   = ./
 SOURCES       = libs/socket/socket.cpp \
 		src/server.cpp \
 		src/client/client.cpp \
+		src/room/room.cpp \
 		src/protos/player.pb.cc \
-		src/protos/room.pb.cc 
+		src/protos/room.pb.cc \
+		src/protos/rooms_list.pb.cc 
 OBJECTS       = socket.o \
 		server.o \
 		client.o \
+		room.o \
 		player.pb.o \
-		room.pb.o
+		room.pb.o \
+		rooms_list.pb.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -133,12 +137,16 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		theMindServer.pro libs/socket/socket.h \
 		src/client/client.h \
+		src/room/room.h \
 		src/protos/player.pb.h \
-		src/protos/room.pb.h libs/socket/socket.cpp \
+		src/protos/room.pb.h \
+		src/protos/rooms_list.pb.h libs/socket/socket.cpp \
 		src/server.cpp \
 		src/client/client.cpp \
+		src/room/room.cpp \
 		src/protos/player.pb.cc \
-		src/protos/room.pb.cc
+		src/protos/room.pb.cc \
+		src/protos/rooms_list.pb.cc
 QMAKE_TARGET  = theMindServer
 DESTDIR       = 
 TARGET        = theMindServer
@@ -343,13 +351,27 @@ socket.o: libs/socket/socket.cpp libs/socket/socket.h
 
 server.o: src/server.cpp libs/socket/socket.h \
 		src/client/client.h \
-		src/protos/room.pb.h \
-		src/protos/player.pb.h
+		src/room/room.h \
+		src/protos/player.pb.h \
+		src/protos/rooms_list.pb.h \
+		src/protos/room.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o server.o src/server.cpp
 
 client.o: src/client/client.cpp src/client/client.h \
-		libs/socket/socket.h
+		libs/socket/socket.h \
+		src/room/room.h \
+		src/protos/player.pb.h \
+		src/protos/rooms_list.pb.h \
+		src/protos/room.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o src/client/client.cpp
+
+room.o: src/room/room.cpp src/room/room.h \
+		src/client/client.h \
+		libs/socket/socket.h \
+		src/protos/player.pb.h \
+		src/protos/rooms_list.pb.h \
+		src/protos/room.pb.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o room.o src/room/room.cpp
 
 player.pb.o: src/protos/player.pb.cc src/protos/player.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.pb.o src/protos/player.pb.cc
@@ -357,6 +379,11 @@ player.pb.o: src/protos/player.pb.cc src/protos/player.pb.h
 room.pb.o: src/protos/room.pb.cc src/protos/room.pb.h \
 		src/protos/player.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o room.pb.o src/protos/room.pb.cc
+
+rooms_list.pb.o: src/protos/rooms_list.pb.cc src/protos/rooms_list.pb.h \
+		src/protos/room.pb.h \
+		src/protos/player.pb.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rooms_list.pb.o src/protos/rooms_list.pb.cc
 
 ####### Install
 
