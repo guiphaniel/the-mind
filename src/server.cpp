@@ -55,11 +55,11 @@ int main(int argc, char *argv[])
         cout << "Client connected on fd : " << sock->getSockfd() << endl;
 
         Client* client = new Client(&clients, &rooms);
-        client->setsocket(sock);
+        client->setSocket(sock);
 
         clients.push_back(client);
 
-       thread th = std::thread(&Client::talk, client);
+       thread th = std::thread(&Client::run, client);
        th.detach();
     }
 }

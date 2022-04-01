@@ -25,14 +25,15 @@ private:
     // have a reference too all rooms, to add/remove a room from them when necessary
     vector<Room*>* rooms;
     Room* room;
+    static int32_t nextId;
     int32_t id;
     string pseudo;
 public:
     Client(vector<Client*>* clients, vector<Room*>* rooms);
     ~Client();
 
-    StreamSocket* getsocket() const { return socket;}
-    void setsocket(StreamSocket* s) { socket=s; }
+    StreamSocket* getSocket() const { return socket;}
+    void setSocket(StreamSocket* s) { socket=s; }
 
     vector<Client*>* getClients() const { return clients;}
     void setClients(vector<Client*>* cs) { clients = cs; }
@@ -46,10 +47,11 @@ public:
     string getPseudo() {return pseudo;};
     void setPseudo(string p) {pseudo = p;}
 
-    void talk();
+    void run();
 
     void onDiscRqc();
+    void onCreaRqc(string msg);
+    void onJoinRqc(string msg);
 };
-
 
 #endif // TALK_H

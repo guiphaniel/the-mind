@@ -3,7 +3,11 @@
 #include <iostream>
 #include "client.h"
 
-Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms) {}
+int32_t Client::nextId = 0;
+
+vector<string> splitString(string str, string delimiter = " ");
+
+Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms), id(nextId++) {}
 
 Client::~Client() {
     delete socket;
@@ -11,7 +15,7 @@ Client::~Client() {
     google::protobuf::ShutdownProtobufLibrary();
 }
 
-void Client::talk() {
+void Client::run() {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     int len;
@@ -33,13 +37,20 @@ void Client::talk() {
             return;
         }
 
+        if(msg.size() < 4) {
+            socket->send("ERR_ 1");
+            continue;
+        }
         string token = msg.substr(0, 4);
-        string content = msg.substr(5, string::npos);
-
+        
         if(token == "DISC") {
             onDiscRqc();
+        } else if(token == "CREA") {
+            string content = msg.substr(5, string::npos);
+            onCreaRqc(content);
         } else if(token == "JOIN") {
-
+            string content = msg.substr(5, string::npos);
+            onJoinRqc(content);
         } else if(token == "SEND") {
             //dl
             /*for(StreamSocket* s : *socket) {
@@ -50,7 +61,7 @@ void Client::talk() {
             }   */
             //fl
         } else {
-            socket->send("Your request hasn't been recognized\n");
+            socket->send("ERR_ 1");
         }
     }
 }
@@ -61,12 +72,76 @@ void Client::onDiscRqc() {
         RoomProto* roomProto = roomsList.add_room();
         roomProto->set_id(r->getId());
         roomProto->set_name(r->getName());
-        for(Client* c : *clients) {
+        for(Client* c : *r->getClients()) {
             PlayerProto* player = roomProto->add_player();
             player->set_id(c->getId());
             player->set_pseudo(c->getPseudo());
         }
     }
 
-    socket->send("DISC" + roomsList.SerializeAsString());
+    int size = roomsList.ByteSizeLong();
+    char* data = new char[size+1];
+    roomsList.SerializeToArray(data, size);
+    socket->send("DISC ");
+    socket->send(data, size, 0);
+    socket->send("\0");
+}
+
+void Client::onCreaRqc(string msg) {
+    vector<string> args = splitString(msg, " ");
+    string roomName = args[0];
+    string nbPlayers = args[1];
+    pseudo = args[2];
+    
+    Room* room = new Room();
+    room->setName(roomName);
+    room->setNbMaxPlayers(stoi(nbPlayers));
+    room->getClients()->push_back(this);
+    rooms->push_back(room);
+
+    socket->send("CREA " + to_string(room->getId()) + " " + to_string(id) + '\n');
+}
+
+void Client::onJoinRqc(string msg) {
+    vector<string> args = splitString(msg, " ");
+    string roomId = args[0];
+    pseudo = args[1];
+
+    Room* room = Room::findRoomById(rooms, stoi(roomId));
+
+    if(room == nullptr) {
+        socket->send("ERRO 31");
+        return;
+    }
+
+    if((int)room->getClients()->size() >= room->getNbMaxPlayers()) {
+        socket->send("ERRO 32");
+        return;
+    }
+
+    room->getClients()->push_back(this);
+
+    RoomProto roomProto;
+    for(Client* c : *room->getClients()) {
+        PlayerProto* p = roomProto.add_player();
+        p->set_id(c->getId());
+        p->set_pseudo(c->getPseudo());
+    }
+
+    socket->send(roomProto.SerializeAsString() + " " + to_string(id));
+}
+
+vector<string> splitString(string str, string delimiter)
+{
+    vector<string> args;
+    int start = 0;
+    int end = str.find(delimiter);
+    while (end != -1) {
+        args.push_back(str.substr(start, end - start));
+        start = end + delimiter.size();
+        end = str.find(delimiter, start);
+    }
+    args.push_back(str.substr(start, end - start));
+
+    return args;
 }
