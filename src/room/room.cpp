@@ -13,5 +13,17 @@ Room::~Room()
 }
 
 Room* Room::findRoomById(vector<Room*>* rooms, int32_t id) {
-    return find_if(*rooms->begin(), *rooms->end(), [&](Room room){ return room.getId() == id; });
+    for(Room* r : *rooms) {
+        if(r->getId() == id)
+            return r;
+    }
+    return nullptr;
+}
+
+Client* Room::findPlayerById(int32_t id) {
+    for(Client* c : *clients) {
+        if(c->getId() == id)
+            return c;
+    }
+    return nullptr;
 }
