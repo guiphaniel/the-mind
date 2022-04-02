@@ -20,7 +20,6 @@ void Client::run() {
 
     int len;
 
-    //TODO: corriger le bug : 1 seul client, envoie deux fois des messages.
     while(true)
     {
         string msg;
@@ -81,6 +80,7 @@ void Client::onDiscRqc() {
     
     socket->send("DISC " + roomsList.SerializeAsString());
 
+    cout << "Client " + getId() << " " + getPseudo() << " requested for a discovery." << endl;
     cout << roomsList.DebugString() << endl;
 }
 
@@ -97,6 +97,7 @@ void Client::onCreaRqc(string msg) {
     rooms->push_back(room);
 
     socket->send("CREA " + to_string(room->getId()) + " " + to_string(id) + '\n');
+    cout << "Client " << to_string(getId()) << " " << getPseudo() << " requested for a room creation : " << room->getId() << " " << roomName << " 0/" << nbPlayers << endl;
 }
 
 void Client::onJoinRqc(string msg) {
@@ -104,7 +105,7 @@ void Client::onJoinRqc(string msg) {
     string roomId = args[0];
     pseudo = args[1];
 
-    Room* room = Room::findRoomById(rooms, stoi(roomId));
+    room = Room::findRoomById(rooms, stoi(roomId));   
 
     if(room == nullptr) {
         socket->send("ERRO 31");
@@ -113,6 +114,12 @@ void Client::onJoinRqc(string msg) {
 
     if((int)room->getClients()->size() >= room->getNbMaxPlayers()) {
         socket->send("ERRO 32");
+        return;
+    }
+
+    if (room->findPlayerById(id) == this)
+    {
+        socket->send("ERRO 33");
         return;
     }
 
@@ -126,6 +133,8 @@ void Client::onJoinRqc(string msg) {
     }
 
     socket->send(roomProto.SerializeAsString() + " " + to_string(id));
+    cout << "Client " << to_string(getId()) << " " << getPseudo() << " joined room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() <<"/" << room->getNbMaxPlayers() << endl;
+
 }
 
 vector<string> splitString(string str, string delimiter)

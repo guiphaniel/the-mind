@@ -30,6 +30,8 @@ public:
     vector<Client*>* getClients() { return clients; }
 
     static Room* findRoomById(vector<Room*>* rooms, int32_t id);
+
+    Client* findPlayerById(int32_t id);
 private:
     static int32_t nextId;
     int32_t id;
