@@ -78,13 +78,10 @@ void Client::onDiscRqc() {
             player->set_pseudo(c->getPseudo());
         }
     }
+    
+    socket->send("DISC " + roomsList.SerializeAsString());
 
-    int size = roomsList.ByteSizeLong();
-    char* data = new char[size+1];
-    roomsList.SerializeToArray(data, size);
-    socket->send("DISC ");
-    socket->send(data, size, 0);
-    socket->send("\0");
+    cout << roomsList.DebugString() << endl;
 }
 
 void Client::onCreaRqc(string msg) {
