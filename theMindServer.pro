@@ -3,6 +3,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 CONFIG+=thread
 CONFIG += link_pkgconfig
+CONFIG += debug
 PKGCONFIG += protobuf
 LIBS+=-pthread
 

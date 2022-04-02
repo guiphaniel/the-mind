@@ -48,5 +48,12 @@
         "streambuf": "cpp",
         "thread": "cpp",
         "typeinfo": "cpp"
-    }
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/guiphaniel/documents/iut/semestre4/theMind",
+            "binaryPath": "/home/guiphaniel/documents/iut/semestre4/theMind/theMindServer",
+            "binaryArgs": []
+        }
+    ]
 }

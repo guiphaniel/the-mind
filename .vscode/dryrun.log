@@ -1,0 +1,14 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/guiphaniel/documents/iut/semestre4/theMind'
+/usr/lib/qt5/bin/qmake -o Makefile theMindServer.pro
+ 
+g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o socket.o libs/socket/socket.cpp
+g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o server.o src/server.cpp
+g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o client.o src/client/client.cpp
+g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o room.o src/room/room.cpp
+g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o player.pb.o src/protos/player.pb.cc
+g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o room.pb.o src/protos/room.pb.cc
+g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o rooms_list.pb.o src/protos/rooms_list.pb.cc
+g++  -o theMindServer socket.o server.o client.o room.o player.pb.o room.pb.o rooms_list.pb.o   -pthread -L/usr/local/lib -lprotobuf -lpthread 
+make: Leaving directory '/home/guiphaniel/documents/iut/semestre4/theMind'
+ 

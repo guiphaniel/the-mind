@@ -13,8 +13,8 @@ MAKEFILE      = Makefile
 CC            = gcc
 CXX           = g++
 DEFINES       = 
-CFLAGS        = -pipe -O2 -pthread -D_REENTRANT -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -O2 -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC $(DEFINES)
+CFLAGS        = -pipe -g -pthread -D_REENTRANT -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC $(DEFINES)
 INCPATH       = -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -35,9 +35,9 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = theMindServer1.0.0
-DISTDIR = /mnt/d/Documents/Semestre4/Client_Serveur/theMind/.tmp/theMindServer1.0.0
+DISTDIR = /home/guiphaniel/documents/iut/semestre4/theMind/.tmp/theMindServer1.0.0
 LINK          = g++
-LFLAGS        = -Wl,-O1
+LFLAGS        = 
 LIBS          = $(SUBLIBS) -pthread -L/usr/local/lib -lprotobuf -lpthread 
 AR            = ar cqs
 RANLIB        = 
