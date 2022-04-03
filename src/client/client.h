@@ -7,6 +7,7 @@
 #include "room.h"
 #include "player.pb.h"
 #include "rooms_list.pb.h"
+#include "cards_list.pb.h"
 
 #ifndef TALK_SERVER_H
 #define TALK_SERVER_H
@@ -28,6 +29,11 @@ private:
     static int32_t nextId;
     int32_t id;
     string pseudo;
+    vector<int32_t> cards;
+
+    void onDiscRqc();
+    void onCreaRqc(string msg);
+    void onJoinRqc(string msg);
 public:
     Client(vector<Client*>* clients, vector<Room*>* rooms);
     ~Client();
@@ -47,11 +53,9 @@ public:
     string getPseudo() {return pseudo;};
     void setPseudo(string p) {pseudo = p;}
 
-    void run();
+    vector<int32_t> getCards() const { return cards; }
 
-    void onDiscRqc();
-    void onCreaRqc(string msg);
-    void onJoinRqc(string msg);
+    void run();
 };
 
 #endif // TALK_H

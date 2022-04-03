@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+import "card.proto";
+
+package protos;
+
+message CardsListProto {
+  repeated CardProto card = 1;
+}

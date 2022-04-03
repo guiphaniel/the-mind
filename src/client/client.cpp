@@ -85,6 +85,13 @@ void Client::onCreaRqc(string msg) {
     string roomName = args[0];
     string nbPlayers = args[1];
     pseudo = args[2];
+
+    // errors verifications
+    if (stoi(nbPlayers) < 1 || stoi(nbPlayers) > MAX_ROOM_SIZE)
+    {
+        socket->send("ERRO 2");
+        return;
+    }
     
     Room* room = new Room();
     room->setName(roomName);
@@ -103,12 +110,13 @@ void Client::onJoinRqc(string msg) {
 
     room = Room::findRoomById(rooms, stoi(roomId));   
 
+    // errors verifications
     if(room == nullptr) {
         socket->send("ERRO 31");
         return;
     }
 
-    if((int)room->getClients()->size() >= room->getNbMaxPlayers()) {
+    if(room->getClients()->size() >= (unsigned)room->getNbMaxPlayers()) {
         socket->send("ERRO 32");
         return;
     }
@@ -119,8 +127,10 @@ void Client::onJoinRqc(string msg) {
         return;
     }
 
+    // add player to the room
     room->getClients()->push_back(this);
 
+    // send room informations to the player
     RoomProto roomProto;
     for(Client* c : *room->getClients()) {
         PlayerProto* p = roomProto.add_player();
@@ -131,6 +141,12 @@ void Client::onJoinRqc(string msg) {
     socket->send(roomProto.SerializeAsString() + " " + to_string(id));
     cout << "Client " << to_string(getId()) << " " << getPseudo() << " joined room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() <<"/" << room->getNbMaxPlayers() << endl;
 
+    // if the room is full, start the game
+    if (room->getClients()->size() >= (unsigned)room->getNbMaxPlayers())
+    {
+        room->start();
+        room->deal();
+    }
 }
 
 vector<string> splitString(string str, string delimiter)

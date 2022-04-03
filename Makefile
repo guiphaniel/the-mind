@@ -56,14 +56,18 @@ SOURCES       = libs/socket/socket.cpp \
 		src/room/room.cpp \
 		src/protos/player.pb.cc \
 		src/protos/room.pb.cc \
-		src/protos/rooms_list.pb.cc 
+		src/protos/rooms_list.pb.cc \
+		src/protos/card.pb.cc \
+		src/protos/cards_list.pb.cc 
 OBJECTS       = socket.o \
 		server.o \
 		client.o \
 		room.o \
 		player.pb.o \
 		room.pb.o \
-		rooms_list.pb.o
+		rooms_list.pb.o \
+		card.pb.o \
+		cards_list.pb.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -140,13 +144,17 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/room/room.h \
 		src/protos/player.pb.h \
 		src/protos/room.pb.h \
-		src/protos/rooms_list.pb.h libs/socket/socket.cpp \
+		src/protos/rooms_list.pb.h \
+		src/protos/card.pb.h \
+		src/protos/cards_list.pb.h libs/socket/socket.cpp \
 		src/server.cpp \
 		src/client/client.cpp \
 		src/room/room.cpp \
 		src/protos/player.pb.cc \
 		src/protos/room.pb.cc \
-		src/protos/rooms_list.pb.cc
+		src/protos/rooms_list.pb.cc \
+		src/protos/card.pb.cc \
+		src/protos/cards_list.pb.cc
 QMAKE_TARGET  = theMindServer
 DESTDIR       = 
 TARGET        = theMindServer
@@ -384,6 +392,13 @@ rooms_list.pb.o: src/protos/rooms_list.pb.cc src/protos/rooms_list.pb.h \
 		src/protos/room.pb.h \
 		src/protos/player.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rooms_list.pb.o src/protos/rooms_list.pb.cc
+
+card.pb.o: src/protos/card.pb.cc src/protos/card.pb.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o card.pb.o src/protos/card.pb.cc
+
+cards_list.pb.o: src/protos/cards_list.pb.cc src/protos/cards_list.pb.h \
+		src/protos/card.pb.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cards_list.pb.o src/protos/cards_list.pb.cc
 
 ####### Install
 

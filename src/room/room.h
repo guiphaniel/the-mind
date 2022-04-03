@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <vector>
+#include <stack>
+#include <algorithm>
 #include "client.h"
 
 #ifndef ROOM_H
@@ -9,7 +11,17 @@
 
 #pragma once
 
+#define MAX_ROOM_SIZE 4
+#define MAX_LEVELS 12
+
 using namespace std;
+
+enum Bonus { NONE, SHUR, LIFE };
+
+struct Level
+{
+    Bonus bonus;
+};
 
 class Client;
 class Room
@@ -32,12 +44,19 @@ public:
     static Room* findRoomById(vector<Room*>* rooms, int32_t id);
 
     Client* findPlayerById(int32_t id);
+
+    void start();
+    void deal();
+
 private:
     static int32_t nextId;
     int32_t id;
     string name;
     int32_t nbMaxPlayers;
     vector<Client*>* clients;
+    stack<Level> levels;
+    vector<int32_t> cards;
+    vector<int32_t> playedCards;
 };
 
 #endif
