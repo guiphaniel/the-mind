@@ -11,13 +11,9 @@ Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients
 
 Client::~Client() {
     delete socket;
-
-    google::protobuf::ShutdownProtobufLibrary();
 }
 
 void Client::run() {
-    GOOGLE_PROTOBUF_VERIFY_VERSION;
-
     int len;
 
     while(true)

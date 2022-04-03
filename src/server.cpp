@@ -14,6 +14,8 @@ using namespace stdsock;
 
 int main(int argc, char *argv[])
 {   
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
+    
     vector<Client*> clients;
     vector<Room*> rooms;
     
@@ -62,4 +64,6 @@ int main(int argc, char *argv[])
        thread th = std::thread(&Client::run, client);
        th.detach();
     }
+
+    google::protobuf::ShutdownProtobufLibrary();
 }
