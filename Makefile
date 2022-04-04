@@ -362,7 +362,9 @@ server.o: src/server.cpp libs/socket/socket.h \
 		src/room/room.h \
 		src/protos/player.pb.h \
 		src/protos/rooms_list.pb.h \
-		src/protos/room.pb.h
+		src/protos/room.pb.h \
+		src/protos/cards_list.pb.h \
+		src/protos/card.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o server.o src/server.cpp
 
 client.o: src/client/client.cpp src/client/client.h \
@@ -370,7 +372,9 @@ client.o: src/client/client.cpp src/client/client.h \
 		src/room/room.h \
 		src/protos/player.pb.h \
 		src/protos/rooms_list.pb.h \
-		src/protos/room.pb.h
+		src/protos/room.pb.h \
+		src/protos/cards_list.pb.h \
+		src/protos/card.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o src/client/client.cpp
 
 room.o: src/room/room.cpp src/room/room.h \
@@ -378,7 +382,9 @@ room.o: src/room/room.cpp src/room/room.h \
 		libs/socket/socket.h \
 		src/protos/player.pb.h \
 		src/protos/rooms_list.pb.h \
-		src/protos/room.pb.h
+		src/protos/room.pb.h \
+		src/protos/cards_list.pb.h \
+		src/protos/card.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o room.o src/room/room.cpp
 
 player.pb.o: src/protos/player.pb.cc src/protos/player.pb.h
