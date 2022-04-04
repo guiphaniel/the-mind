@@ -138,7 +138,7 @@ void Client::onJoinRqc(string msg) {
         p->set_pseudo(c->getPseudo());
     }
 
-    socket->send(roomProto.SerializeAsString() + " " + to_string(id));
+    socket->send("JOIN " + to_string(id) + " " + roomProto.SerializeAsString());
     cout << "Client " << to_string(getId()) << " " << getPseudo() << " joined room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() <<"/" << room->getNbMaxPlayers() << endl;
 
     // if the room is full, start the game
