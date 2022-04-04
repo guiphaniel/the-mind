@@ -16,6 +16,8 @@
 
 using namespace std;
 
+enum RoomState { WAIT, FOCU, PLAY, LEFP };
+
 enum Bonus { NONE, SHUR, LIFE };
 
 struct Level
@@ -41,6 +43,9 @@ public:
     
     vector<Client*>* getClients() { return clients; }
 
+    RoomState getState() const { return state; }
+    void setState(const RoomState &state_) { state = state_; }
+
     static Room* findRoomById(vector<Room*>* rooms, int32_t id);
 
     Client* findPlayerById(int32_t id);
@@ -54,6 +59,7 @@ private:
     string name;
     int32_t nbMaxPlayers;
     vector<Client*>* clients;
+    RoomState state;
     stack<Level> levels;
     vector<int32_t> cards;
     vector<int32_t> playedCards;

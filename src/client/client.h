@@ -30,11 +30,13 @@ private:
     int32_t id;
     string pseudo;
     vector<int32_t> cards;
+    bool focus;
 
     void onDiscRqc();
     void onCreaRqc(string msg);
     void onJoinRqc(string msg);
     void onQuitRqc();
+    void onFocuRqc();
 public:
     Client(vector<Client*>* clients, vector<Room*>* rooms);
     ~Client();
@@ -57,6 +59,9 @@ public:
     vector<int32_t> getCards() const { return cards; }
 
     void run();
+
+    bool isFocused() const { return focus; }
+    void setFocus(bool focus_) { focus = focus_; }
 };
 
 #endif // TALK_H

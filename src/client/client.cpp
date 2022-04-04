@@ -7,7 +7,7 @@ int32_t Client::nextId = 0;
 
 vector<string> splitString(string str, string delimiter = " ");
 
-Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms), room(nullptr), id(nextId++) {}
+Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms), room(nullptr), id(nextId++), focus(false) {}
 
 Client::~Client() {
     //dr
@@ -129,6 +129,12 @@ void Client::onJoinRqc(string msg) {
         return;
     }
 
+    if (room->getState() != WAIT)
+    {
+        socket->send("ERRO 34");
+        return;
+    }
+
     // warn other players that a new player joined the room
     PlayerProto newPlayer;
     newPlayer.set_id(id);
@@ -175,9 +181,23 @@ void Client::onQuitRqc() {
     room = nullptr;
 }
 
-//TODO:
 void Client::onFocuRqc() {
+    if (room->getState() == PLAY)
+        room->setState(FOCU);
+
+    focus = true;
+
+    // check if all clients are focused
+    for(Client* c : *room->getClients()) {
+        if(!c->isFocused())
+            return;
+    }
     
+    // if so, resume the game
+    room->setState(PLAY);
+    for(Client* c : *room->getClients()) {
+        c->getSocket()->send("RESM");
+    }
 }
 
 vector<string> splitString(string str, string delimiter)
