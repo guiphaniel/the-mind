@@ -21,7 +21,8 @@ constexpr RoomProto::RoomProto(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : player_()
   , name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , id_(0){}
+  , id_(0)
+  , nb_max_players_(0){}
 struct RoomProtoDefaultTypeInternal {
   constexpr RoomProtoDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -44,13 +45,15 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_room_2eproto::offsets[] PROTOB
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::protos::RoomProto, id_),
   PROTOBUF_FIELD_OFFSET(::protos::RoomProto, name_),
+  PROTOBUF_FIELD_OFFSET(::protos::RoomProto, nb_max_players_),
   PROTOBUF_FIELD_OFFSET(::protos::RoomProto, player_),
   1,
   0,
+  2,
   ~0u,
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 8, sizeof(::protos::RoomProto)},
+  { 0, 9, sizeof(::protos::RoomProto)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -58,16 +61,17 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_room_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\nroom.proto\022\006protos\032\014player.proto\"J\n\tRo"
-  "omProto\022\n\n\002id\030\001 \002(\005\022\014\n\004name\030\002 \001(\t\022#\n\006pla"
-  "yer\030\003 \003(\0132\023.protos.PlayerProto"
+  "\n\nroom.proto\022\006protos\032\014player.proto\"b\n\tRo"
+  "omProto\022\n\n\002id\030\001 \002(\005\022\014\n\004name\030\002 \001(\t\022\026\n\016nb_"
+  "max_players\030\003 \001(\005\022#\n\006player\030\004 \003(\0132\023.prot"
+  "os.PlayerProto"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_room_2eproto_deps[1] = {
   &::descriptor_table_player_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_room_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_room_2eproto = {
-  false, false, 110, descriptor_table_protodef_room_2eproto, "room.proto", 
+  false, false, 134, descriptor_table_protodef_room_2eproto, "room.proto", 
   &descriptor_table_room_2eproto_once, descriptor_table_room_2eproto_deps, 1, 1,
   schemas, file_default_instances, TableStruct_room_2eproto::offsets,
   file_level_metadata_room_2eproto, file_level_enum_descriptors_room_2eproto, file_level_service_descriptors_room_2eproto,
@@ -90,6 +94,9 @@ class RoomProto::_Internal {
   }
   static void set_has_name(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
+  }
+  static void set_has_nb_max_players(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
   }
   static bool MissingRequiredFields(const HasBits& has_bits) {
     return ((has_bits[0] & 0x00000002) ^ 0x00000002) != 0;
@@ -119,13 +126,18 @@ RoomProto::RoomProto(const RoomProto& from)
     name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
       GetArenaForAllocation());
   }
-  id_ = from.id_;
+  ::memcpy(&id_, &from.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&nb_max_players_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(nb_max_players_));
   // @@protoc_insertion_point(copy_constructor:protos.RoomProto)
 }
 
 inline void RoomProto::SharedCtor() {
 name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-id_ = 0;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&id_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&nb_max_players_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(nb_max_players_));
 }
 
 RoomProto::~RoomProto() {
@@ -161,7 +173,11 @@ void RoomProto::Clear() {
   if (cached_has_bits & 0x00000001u) {
     name_.ClearNonDefaultToEmpty();
   }
-  id_ = 0;
+  if (cached_has_bits & 0x00000006u) {
+    ::memset(&id_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&nb_max_players_) -
+        reinterpret_cast<char*>(&id_)) + sizeof(nb_max_players_));
+  }
   _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -192,16 +208,24 @@ const char* RoomProto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // repeated .protos.PlayerProto player = 3;
+      // optional int32 nb_max_players = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          _Internal::set_has_nb_max_players(&has_bits);
+          nb_max_players_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .protos.PlayerProto player = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           ptr -= 1;
           do {
             ptr += 1;
             ptr = ctx->ParseMessage(_internal_add_player(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -251,12 +275,18 @@ failure:
         2, this->_internal_name(), target);
   }
 
-  // repeated .protos.PlayerProto player = 3;
+  // optional int32 nb_max_players = 3;
+  if (cached_has_bits & 0x00000004u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_nb_max_players(), target);
+  }
+
+  // repeated .protos.PlayerProto player = 4;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_player_size()); i < n; i++) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, this->_internal_player(i), target, stream);
+      InternalWriteMessage(4, this->_internal_player(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -281,7 +311,7 @@ size_t RoomProto::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .protos.PlayerProto player = 3;
+  // repeated .protos.PlayerProto player = 4;
   total_size += 1UL * this->_internal_player_size();
   for (const auto& msg : this->player_) {
     total_size +=
@@ -294,6 +324,13 @@ size_t RoomProto::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
+  }
+
+  // optional int32 nb_max_players = 3;
+  if (cached_has_bits & 0x00000004u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_nb_max_players());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -326,12 +363,15 @@ void RoomProto::MergeFrom(const RoomProto& from) {
 
   player_.MergeFrom(from.player_);
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
       _internal_set_name(from._internal_name());
     }
     if (cached_has_bits & 0x00000002u) {
       id_ = from.id_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      nb_max_players_ = from.nb_max_players_;
     }
     _has_bits_[0] |= cached_has_bits;
   }
@@ -361,7 +401,12 @@ void RoomProto::InternalSwap(RoomProto* other) {
       &name_, GetArenaForAllocation(),
       &other->name_, other->GetArenaForAllocation()
   );
-  swap(id_, other->id_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RoomProto, nb_max_players_)
+      + sizeof(RoomProto::nb_max_players_)
+      - PROTOBUF_FIELD_OFFSET(RoomProto, id_)>(
+          reinterpret_cast<char*>(&id_),
+          reinterpret_cast<char*>(&other->id_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RoomProto::GetMetadata() const {

@@ -188,11 +188,12 @@ class RoomProto final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPlayerFieldNumber = 3,
+    kPlayerFieldNumber = 4,
     kNameFieldNumber = 2,
     kIdFieldNumber = 1,
+    kNbMaxPlayersFieldNumber = 3,
   };
-  // repeated .protos.PlayerProto player = 3;
+  // repeated .protos.PlayerProto player = 4;
   int player_size() const;
   private:
   int _internal_player_size() const;
@@ -241,6 +242,19 @@ class RoomProto final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // optional int32 nb_max_players = 3;
+  bool has_nb_max_players() const;
+  private:
+  bool _internal_has_nb_max_players() const;
+  public:
+  void clear_nb_max_players();
+  ::PROTOBUF_NAMESPACE_ID::int32 nb_max_players() const;
+  void set_nb_max_players(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_nb_max_players() const;
+  void _internal_set_nb_max_players(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:protos.RoomProto)
  private:
   class _Internal;
@@ -253,6 +267,7 @@ class RoomProto final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protos::PlayerProto > player_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::int32 id_;
+  ::PROTOBUF_NAMESPACE_ID::int32 nb_max_players_;
   friend struct ::TableStruct_room_2eproto;
 };
 // ===================================================================
@@ -352,7 +367,35 @@ inline void RoomProto::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:protos.RoomProto.name)
 }
 
-// repeated .protos.PlayerProto player = 3;
+// optional int32 nb_max_players = 3;
+inline bool RoomProto::_internal_has_nb_max_players() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool RoomProto::has_nb_max_players() const {
+  return _internal_has_nb_max_players();
+}
+inline void RoomProto::clear_nb_max_players() {
+  nb_max_players_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoomProto::_internal_nb_max_players() const {
+  return nb_max_players_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RoomProto::nb_max_players() const {
+  // @@protoc_insertion_point(field_get:protos.RoomProto.nb_max_players)
+  return _internal_nb_max_players();
+}
+inline void RoomProto::_internal_set_nb_max_players(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000004u;
+  nb_max_players_ = value;
+}
+inline void RoomProto::set_nb_max_players(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_nb_max_players(value);
+  // @@protoc_insertion_point(field_set:protos.RoomProto.nb_max_players)
+}
+
+// repeated .protos.PlayerProto player = 4;
 inline int RoomProto::_internal_player_size() const {
   return player_.size();
 }

@@ -34,6 +34,7 @@ private:
     void onDiscRqc();
     void onCreaRqc(string msg);
     void onJoinRqc(string msg);
+    void onQuitRqc();
 public:
     Client(vector<Client*>* clients, vector<Room*>* rooms);
     ~Client();

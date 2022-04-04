@@ -46,15 +46,8 @@ void Client::run() {
         } else if(token == "JOIN") {
             string content = msg.substr(5, string::npos);
             onJoinRqc(content);
-        } else if(token == "SEND") {
-            //dl
-            /*for(StreamSocket* s : *socket) {
-                if(c == socket)
-                    continue;
-
-                c->send(content);
-            }   */
-            //fl
+        } else if(token == "QUIT") {
+            onQuitRqc();
         } else {
             socket->send("ERR_ 1");
         }
@@ -67,6 +60,7 @@ void Client::onDiscRqc() {
         RoomProto* roomProto = roomsList.add_room();
         roomProto->set_id(r->getId());
         roomProto->set_name(r->getName());
+        roomProto->set_nb_max_players(room->getNbMaxPlayers());
         for(Client* c : *r->getClients()) {
             PlayerProto* player = roomProto->add_player();
             player->set_id(c->getId());
@@ -127,6 +121,14 @@ void Client::onJoinRqc(string msg) {
         return;
     }
 
+    // warn other players that a new player joined the room
+    PlayerProto newPlayer;
+    newPlayer.set_id(id);
+    newPlayer.set_pseudo(pseudo);
+    for(Client* c : *room->getClients()) {
+        c->getSocket()->send("NEWP " + newPlayer.SerializeAsString());
+    }
+
     // add player to the room
     room->getClients()->push_back(this);
 
@@ -134,6 +136,7 @@ void Client::onJoinRqc(string msg) {
     RoomProto roomProto;
     roomProto.set_id(room->getId());
     roomProto.set_name(room->getName());
+    roomProto.set_nb_max_players(room->getNbMaxPlayers());
     for(Client* c : *room->getClients()) {
         PlayerProto* p = roomProto.add_player();
         p->set_id(c->getId());
@@ -148,6 +151,17 @@ void Client::onJoinRqc(string msg) {
     {
         room->start();
         room->deal();
+    }
+}
+
+void Client::onQuitRqc() {
+    vector<Client*>* clients = room->getClients();
+    clients->erase(std::remove(clients->begin(), clients->end(), this), clients->end());
+
+    socket->send("ACK_");
+
+    for(Client* c : *room->getClients()){
+        c->getSocket()->send("LEFP " + id);
     }
 }
 

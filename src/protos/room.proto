@@ -7,5 +7,6 @@ package protos;
 message RoomProto {
   required int32 id = 1;
   optional string name = 2;
-  repeated PlayerProto player = 3;
+  optional int32 nb_max_players = 3;
+  repeated PlayerProto player = 4;
 }
