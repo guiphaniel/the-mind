@@ -132,6 +132,8 @@ void Client::onJoinRqc(string msg) {
 
     // send room informations to the player
     RoomProto roomProto;
+    roomProto.set_id(room->getId());
+    roomProto.set_name(room->getName());
     for(Client* c : *room->getClients()) {
         PlayerProto* p = roomProto.add_player();
         p->set_id(c->getId());
