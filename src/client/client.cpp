@@ -7,9 +7,18 @@ int32_t Client::nextId = 0;
 
 vector<string> splitString(string str, string delimiter = " ");
 
-Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms), id(nextId++) {}
+Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms), room(nullptr), id(nextId++) {}
 
 Client::~Client() {
+    //dr
+    clients->erase(std::remove(clients->begin(), clients->end(), this), clients->end());
+    //fr
+    if (room != nullptr)
+    {
+        vector<Client*>* roomClients = room->getClients();
+        roomClients->erase(std::remove(roomClients->begin(), roomClients->end(), this), roomClients->end());
+    }
+
     delete socket;
 }
 
@@ -22,9 +31,6 @@ void Client::run() {
         len = socket->read(msg);
         if(len <= 0) {
             //La connexion est coupee du cote du client ou erreur
-            //dr
-            clients->erase(std::remove(clients->begin(), clients->end(), this), clients->end());
-            //fr
             cout << "Client disconnected of fd : " << socket->getSockfd() << endl;
 
             delete this;
@@ -33,7 +39,7 @@ void Client::run() {
         }
 
         if(msg.size() < 4) {
-            socket->send("ERR_ 1");
+            socket->send("ERRO 1");
             continue;
         }
         string token = msg.substr(0, 4);
@@ -48,8 +54,10 @@ void Client::run() {
             onJoinRqc(content);
         } else if(token == "QUIT") {
             onQuitRqc();
+        } else if(token == "FOCU") {
+            onFocuRqc();
         } else {
-            socket->send("ERR_ 1");
+            socket->send("ERRO 1");
         }
     }
 }
@@ -60,7 +68,7 @@ void Client::onDiscRqc() {
         RoomProto* roomProto = roomsList.add_room();
         roomProto->set_id(r->getId());
         roomProto->set_name(r->getName());
-        roomProto->set_nb_max_players(room->getNbMaxPlayers());
+        roomProto->set_nb_max_players(r->getNbMaxPlayers());
         for(Client* c : *r->getClients()) {
             PlayerProto* player = roomProto->add_player();
             player->set_id(c->getId());
@@ -70,7 +78,7 @@ void Client::onDiscRqc() {
     
     socket->send("DISC " + roomsList.SerializeAsString());
 
-    cout << "Client " + getId() << " " + getPseudo() << " requested for a discovery." << endl;
+    cout << "Client " << id << " " << pseudo << " requested for a discovery." << endl;
     cout << roomsList.DebugString() << endl;
 }
 
@@ -87,7 +95,7 @@ void Client::onCreaRqc(string msg) {
         return;
     }
     
-    Room* room = new Room();
+    room = new Room();
     room->setName(roomName);
     room->setNbMaxPlayers(stoi(nbPlayers));
     room->getClients()->push_back(this);
@@ -163,6 +171,13 @@ void Client::onQuitRqc() {
     for(Client* c : *room->getClients()){
         c->getSocket()->send("LEFP " + id);
     }
+
+    room = nullptr;
+}
+
+//TODO:
+void Client::onFocuRqc() {
+    
 }
 
 vector<string> splitString(string str, string delimiter)
