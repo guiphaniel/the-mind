@@ -29,7 +29,7 @@ private:
     static int32_t nextId;
     int32_t id;
     string pseudo;
-    vector<int32_t> cards;
+    vector<int32_t>* cards;
     bool focus;
 
     void onDiscRqc();
@@ -37,6 +37,7 @@ private:
     void onJoinRqc(string msg);
     void onQuitRqc();
     void onFocuRqc();
+    void onPutRqc(int32_t card);
 public:
     Client(vector<Client*>* clients, vector<Room*>* rooms);
     ~Client();
@@ -56,7 +57,7 @@ public:
     string getPseudo() {return pseudo;};
     void setPseudo(string p) {pseudo = p;}
 
-    vector<int32_t> getCards() const { return cards; }
+    vector<int32_t>* getCards() const { return cards; }
 
     void run();
 

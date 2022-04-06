@@ -7,7 +7,9 @@ int32_t Client::nextId = 0;
 
 vector<string> splitString(string str, string delimiter = " ");
 
-Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms), room(nullptr), id(nextId++), focus(false) {}
+Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms), room(nullptr), id(nextId++), focus(false) {
+    cards = new vector<int32_t>;
+}
 
 Client::~Client() {
     //dr
@@ -19,6 +21,7 @@ Client::~Client() {
         roomClients->erase(std::remove(roomClients->begin(), roomClients->end(), this), roomClients->end());
     }
 
+    delete cards;
     delete socket;
 }
 
@@ -56,6 +59,8 @@ void Client::run() {
             onQuitRqc();
         } else if(token == "FOCU") {
             onFocuRqc();
+        } else if(token == "PUT_") {
+            onPutRqc(stoi(msg.substr(5, string::npos)));
         } else {
             socket->send("ERRO 1");
         }
@@ -89,7 +94,7 @@ void Client::onCreaRqc(string msg) {
     pseudo = args[2];
 
     // errors verifications
-    if (stoi(nbPlayers) < 1 || stoi(nbPlayers) > MAX_ROOM_SIZE)
+    if (stoi(nbPlayers) < 2 || stoi(nbPlayers) > MAX_ROOM_SIZE)
     {
         socket->send("ERRO 2");
         return;
@@ -101,7 +106,7 @@ void Client::onCreaRqc(string msg) {
     room->getClients()->push_back(this);
     rooms->push_back(room);
 
-    socket->send("CREA " + to_string(room->getId()) + " " + to_string(id) + '\n');
+    socket->send("CREA " + to_string(room->getId()) + " " + to_string(id) + '\0');
     cout << "Client " << to_string(getId()) << " " << getPseudo() << " requested for a room creation : " << room->getId() << " " << roomName << " 0/" << nbPlayers << endl;
 }
 
@@ -158,7 +163,7 @@ void Client::onJoinRqc(string msg) {
     }
 
     socket->send("JOIN " + to_string(id) + " " + roomProto.SerializeAsString());
-    cout << "Client " << to_string(getId()) << " " << getPseudo() << " joined room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() <<"/" << room->getNbMaxPlayers() << endl;
+    cout << "Client " << id << " " << pseudo << " joined room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
 
     // if the room is full, start the game
     if (room->getClients()->size() >= (unsigned)room->getNbMaxPlayers())
@@ -172,10 +177,18 @@ void Client::onQuitRqc() {
     vector<Client*>* clients = room->getClients();
     clients->erase(std::remove(clients->begin(), clients->end(), this), clients->end());
 
+    if(clients->size() <= 0) {
+        rooms->erase(std::remove(rooms->begin(), rooms->end(), room), rooms->end());
+        delete room;
+        room = nullptr;
+        socket->send("ACK_");
+        return;
+    }
+    
     socket->send("ACK_");
 
     for(Client* c : *room->getClients()){
-        c->getSocket()->send("LEFP " + id);
+        c->getSocket()->send("LEFP " + id + '\0');
     }
 
     room = nullptr;
@@ -198,6 +211,17 @@ void Client::onFocuRqc() {
     for(Client* c : *room->getClients()) {
         c->getSocket()->send("RESM");
     }
+}
+
+//TODO:
+void Client::onPutRqc(int32_t card) {
+    // check if the client has this card
+    if(!count(cards->begin(), cards->end(), card)) {
+        socket->send("ERRO 4");
+        return;
+    }
+
+    
 }
 
 vector<string> splitString(string str, string delimiter)

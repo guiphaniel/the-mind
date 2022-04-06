@@ -47,7 +47,7 @@ Client* Room::findPlayerById(int32_t id) {
 void Room::start() {
     for(Client* c : *clients) {
         // start the game and give as many lives as players
-        c->getSocket()->send("STRT " + clients->size());
+        c->getSocket()->send("STRT " + to_string(clients->size()) + '\0');
     }
 }
 
@@ -74,18 +74,18 @@ void Room::deal() {
     for(Client* client : *clients) {
         for (size_t i = 0; i <= MAX_LEVELS - levels.size(); i++)
         {
-            client->getCards().push_back(cards.back());
+            client->getCards()->push_back(cards.back());
             cards.pop_back();
         }
 
         // genereate cards list proto
         CardsListProto cardsListProto;
-        for(int32_t card : client->getCards()) {
+        for(int32_t card : *client->getCards()) {
             CardProto* cardProto = cardsListProto.add_card();
             cardProto->set_value(card);
         }
 
         // send the bonus and the cards to the client
-        client->getSocket()->send("DEAL" + to_string(bonus) + " " + cardsListProto.SerializeAsString());
+        client->getSocket()->send("DEAL " + to_string(bonus) + " " + cardsListProto.SerializeAsString());
     }
 }
