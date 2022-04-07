@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <mutex>
+#include <condition_variable>
 #include "socket.h"
 #include "room.h"
 #include "player.pb.h"
@@ -31,6 +33,9 @@ private:
     string pseudo;
     vector<int32_t>* cards;
     bool focus;
+    bool waitingForAck;
+    mutex waitMutex;
+    condition_variable waitCv;
 
     void onDiscRqc();
     void onCreaRqc(string msg);
@@ -60,9 +65,22 @@ public:
     vector<int32_t>* getCards() const { return cards; }
 
     void run();
+    void send(const std::string& msg);
 
     bool isFocused() const { return focus; }
     void setFocus(bool focus_) { focus = focus_; }
+
+    bool isWaitingForAck() const { return waitingForAck; }
+    void setWaitingForAck(bool waitingForAck_) { 
+        {
+            lock_guard<std::mutex> lk(waitMutex);
+            waitingForAck = waitingForAck_; 
+        }
+        if (!waitingForAck)
+        {
+            waitCv.notify_one();
+        }
+    }
 };
 
 #endif // TALK_H

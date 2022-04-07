@@ -47,7 +47,8 @@ Client* Room::findPlayerById(int32_t id) {
 void Room::start() {
     for(Client* c : *clients) {
         // start the game and give as many lives as players
-        c->getSocket()->send("STRT " + to_string(clients->size()) + '\0');
+        c->send("STRT " + to_string(clients->size()) + '\0');
+        c->setWaitingForAck(true);
     }
 }
 
@@ -86,6 +87,7 @@ void Room::deal() {
         }
 
         // send the bonus and the cards to the client
-        client->getSocket()->send("DEAL " + to_string(bonus) + " " + cardsListProto.SerializeAsString());
+        client->send("DEAL " + to_string(bonus) + " " + cardsListProto.SerializeAsString());
+        client->setWaitingForAck(true);
     }
 }

@@ -9,6 +9,7 @@ vector<string> splitString(string str, string delimiter = " ");
 
 Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms), room(nullptr), id(nextId++), focus(false) {
     cards = new vector<int32_t>;
+    waitingForAck = false;
 }
 
 Client::~Client() {
@@ -42,7 +43,7 @@ void Client::run() {
         }
 
         if(msg.size() < 4) {
-            socket->send("ERRO 1");
+            send("ERRO 1");
             continue;
         }
         string token = msg.substr(0, 4);
@@ -61,10 +62,18 @@ void Client::run() {
             onFocuRqc();
         } else if(token == "PUT_") {
             onPutRqc(stoi(msg.substr(5, string::npos)));
+        } else if(token == "ACK_") {
+            setWaitingForAck(false);
         } else {
-            socket->send("ERRO 1");
+            send("ERRO 1");
         }
     }
+}
+
+void Client::send(const std::string& msg) {
+    unique_lock<std::mutex> lk(waitMutex);
+    waitCv.wait(lk, [&]{return !isWaitingForAck();});
+    socket->send(msg);
 }
 
 void Client::onDiscRqc() {
@@ -81,7 +90,7 @@ void Client::onDiscRqc() {
         }
     }
     
-    socket->send("DISC " + roomsList.SerializeAsString());
+    send("DISC " + roomsList.SerializeAsString());
 
     cout << "Client " << id << " " << pseudo << " requested for a discovery." << endl;
     cout << roomsList.DebugString() << endl;
@@ -96,7 +105,7 @@ void Client::onCreaRqc(string msg) {
     // errors verifications
     if (stoi(nbPlayers) < 2 || stoi(nbPlayers) > MAX_ROOM_SIZE)
     {
-        socket->send("ERRO 2");
+        send("ERRO 2");
         return;
     }
     
@@ -106,7 +115,8 @@ void Client::onCreaRqc(string msg) {
     room->getClients()->push_back(this);
     rooms->push_back(room);
 
-    socket->send("CREA " + to_string(room->getId()) + " " + to_string(id) + '\0');
+    send("CREA " + to_string(room->getId()) + " " + to_string(id) + '\0');
+    setWaitingForAck(true);
     cout << "Client " << to_string(getId()) << " " << getPseudo() << " requested for a room creation : " << room->getId() << " " << roomName << " 0/" << nbPlayers << endl;
 }
 
@@ -119,24 +129,24 @@ void Client::onJoinRqc(string msg) {
 
     // errors verifications
     if(room == nullptr) {
-        socket->send("ERRO 31");
+        send("ERRO 31");
         return;
     }
 
     if(room->getClients()->size() >= (unsigned)room->getNbMaxPlayers()) {
-        socket->send("ERRO 32");
+        send("ERRO 32");
         return;
     }
 
     if (room->findPlayerById(id) == this)
     {
-        socket->send("ERRO 33");
+        send("ERRO 33");
         return;
     }
 
     if (room->getState() != WAIT)
     {
-        socket->send("ERRO 34");
+        send("ERRO 34");
         return;
     }
 
@@ -145,7 +155,8 @@ void Client::onJoinRqc(string msg) {
     newPlayer.set_id(id);
     newPlayer.set_pseudo(pseudo);
     for(Client* c : *room->getClients()) {
-        c->getSocket()->send("NEWP " + newPlayer.SerializeAsString());
+        c->send("NEWP " + newPlayer.SerializeAsString());
+        c->setWaitingForAck(true);
     }
 
     // add player to the room
@@ -162,7 +173,8 @@ void Client::onJoinRqc(string msg) {
         p->set_pseudo(c->getPseudo());
     }
 
-    socket->send("JOIN " + to_string(id) + " " + roomProto.SerializeAsString());
+    send("JOIN " + to_string(id) + " " + roomProto.SerializeAsString());
+    setWaitingForAck(true);
     cout << "Client " << id << " " << pseudo << " joined room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
 
     // if the room is full, start the game
@@ -181,14 +193,14 @@ void Client::onQuitRqc() {
         rooms->erase(std::remove(rooms->begin(), rooms->end(), room), rooms->end());
         delete room;
         room = nullptr;
-        socket->send("ACK_");
+        send("ACK_");
         return;
     }
     
-    socket->send("ACK_");
+    send("ACK_");
 
     for(Client* c : *room->getClients()){
-        c->getSocket()->send("LEFP " + id + '\0');
+        c->send("LEFP " + to_string(id) + '\0');
     }
 
     room = nullptr;
@@ -209,7 +221,7 @@ void Client::onFocuRqc() {
     // if so, resume the game
     room->setState(PLAY);
     for(Client* c : *room->getClients()) {
-        c->getSocket()->send("RESM");
+        c->send("RESM");
     }
 }
 
@@ -217,7 +229,7 @@ void Client::onFocuRqc() {
 void Client::onPutRqc(int32_t card) {
     // check if the client has this card
     if(!count(cards->begin(), cards->end(), card)) {
-        socket->send("ERRO 4");
+        send("ERRO 4");
         return;
     }
 
