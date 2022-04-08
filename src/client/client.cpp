@@ -204,6 +204,7 @@ void Client::onQuitRqc() {
 
     for(Client* c : *room->getClients()){
         c->send("LEFP " + to_string(id) + '\0');
+        c->setWaitingForAck(true);
     }
 
     cout << "Client " << id << " " << pseudo << " has left the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
