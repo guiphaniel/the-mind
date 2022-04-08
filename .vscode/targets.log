@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Apr  8 15:10:06 2022
+# Make data base, printed on Fri Apr  8 21:36:38 2022
 
 # Variables
 
@@ -15,14 +15,14 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # automatic
 ?F = $(notdir $?)
 # environment
-WSLENV = VSCODE_WSL_EXT_LOCATION/up:VSCODE_SERVER_TAR/up
+WSLENV = VSCODE_WSL_EXT_LOCATION/up
 # default
 .SHELLFLAGS := -c
-# makefile (from 'Makefile', line 158)
+# makefile (from 'Makefile', line 162)
 QMAKE_TARGET = theMindServer
 # environment
 VSCODE_LOG_NATIVE = false
-# makefile (from 'Makefile', line 160)
+# makefile (from 'Makefile', line 164)
 TARGET = theMindServer
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
@@ -47,7 +47,7 @@ MAKEFILE_LIST :=  Makefile
 # 'override' directive
 GNUMAKEFLAGS := 
 # makefile (from 'Makefile', line 53)
-SOURCES = libs/socket/socket.cpp src/server.cpp src/client/client.cpp src/room/room.cpp src/protos/player.pb.cc src/protos/room.pb.cc src/protos/rooms_list.pb.cc src/protos/card.pb.cc src/protos/cards_list.pb.cc 
+SOURCES = libs/socket/socket.cpp src/server.cpp src/client/client.cpp src/room/room.cpp src/protos/player.pb.cc src/protos/room.pb.cc src/protos/rooms_list.pb.cc src/protos/card.pb.cc src/protos/cards_list.pb.cc src/protos/player_cards_map.pb.cc 
 # makefile (from 'Makefile', line 17)
 CXXFLAGS = -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC $(DEFINES)
 # makefile (from 'Makefile', line 19)
@@ -75,9 +75,7 @@ VSCODE_LOG_STACK = false
 # makefile (from 'Makefile', line 21)
 CHK_DIR_EXISTS = test -d
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-7f8bc094-2841-439f-8e48-1f5e440597b2.sock
-# environment
-VSCODE_SERVER_TAR = /mnt/c/Users/guilh/AppData/Local/Temp/vscode-remote-wsl/8dfae7a5cd50421d10cd99cb873990460525a898/vscode-server-stable-linux-x64.tar.gz
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-128bba0f-f031-46ef-815f-0810e7094343.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # makefile (from 'Makefile', line 30)
@@ -95,7 +93,7 @@ PWD = /home/guiphaniel/documents/iut/semestre4/theMind
 # default
 .LOADED := 
 # environment
-WSL_INTEROP = /run/WSL/12_interop
+WSL_INTEROP = /run/WSL/13_interop
 # makefile (from 'Makefile', line 26)
 INSTALL_FILE = install -m 644 -p
 # environment
@@ -128,6 +126,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 MKDIR = mkdir -p
 # makefile (from 'Makefile', line 38)
 DISTDIR = /home/guiphaniel/documents/iut/semestre4/theMind/.tmp/theMindServer1.0.0
+ 
 # environment
 MAKELEVEL := 0
 # default
@@ -148,7 +147,7 @@ USER = guiphaniel
 .DEFAULT_GOAL := first
 # environment
 NAME = LAPTOP-4LNVGOQ3
-# makefile (from 'Makefile', line 159)
+# makefile (from 'Makefile', line 163)
 DESTDIR = 
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
@@ -212,10 +211,10 @@ COPY_DIR = cp -f -R
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # default
 .RECIPEPREFIX := 
-# makefile (from 'Makefile', line 62)
-OBJECTS = socket.o server.o client.o room.o player.pb.o room.pb.o rooms_list.pb.o card.pb.o cards_list.pb.o
-# makefile (from 'Makefile', line 71)
-DIST = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/qconfig.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_edid_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_egl_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fb_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_glx_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_input_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_functions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf .qmake.stash /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/link_pkgconfig.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/thread.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/testcase_targets.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf theMindServer.pro libs/socket/socket.h src/client/client.h src/room/room.h src/protos/player.pb.h src/protos/room.pb.h src/protos/rooms_list.pb.h src/protos/card.pb.h src/protos/cards_list.pb.h libs/socket/socket.cpp src/server.cpp src/client/client.cpp src/room/room.cpp src/protos/player.pb.cc src/protos/room.pb.cc src/protos/rooms_list.pb.cc src/protos/card.pb.cc src/protos/cards_list.pb.cc
+# makefile (from 'Makefile', line 63)
+OBJECTS = socket.o server.o client.o room.o player.pb.o room.pb.o rooms_list.pb.o card.pb.o cards_list.pb.o player_cards_map.pb.o
+# makefile (from 'Makefile', line 73)
+DIST = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/qconfig.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_edid_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_egl_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fb_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_glx_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_input_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_functions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf .qmake.stash /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/link_pkgconfig.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/thread.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/testcase_targets.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf theMindServer.pro libs/socket/socket.h src/client/client.h src/room/room.h src/protos/player.pb.h src/protos/room.pb.h src/protos/rooms_list.pb.h src/protos/card.pb.h src/protos/cards_list.pb.h src/protos/player_cards_map.pb.h libs/socket/socket.cpp src/server.cpp src/client/client.cpp src/room/room.cpp src/protos/player.pb.cc src/protos/room.pb.cc src/protos/rooms_list.pb.cc src/protos/card.pb.cc src/protos/cards_list.pb.cc src/protos/player_cards_map.pb.cc
 # environment
 LANG = C
 # environment
@@ -227,7 +226,7 @@ VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 # environment
 WSL_DISTRO_NAME = Debian
 # variable set hash-table stats:
-# Load=108/1024=11%, Rehash=0, Collisions=9/144=6%
+# Load=107/1024=10%, Rehash=0, Collisions=9/143=6%
 
 # Pattern-specific Variable Values
 
@@ -235,9 +234,9 @@ WSL_DISTRO_NAME = Debian
 
 # Directories
 
-# . (device 2080, inode 1144): 23 files, no impossibilities.
+# . (device 2080, inode 1144): 24 files, no impossibilities.
 
-# 23 files, no impossibilities in 1 directories.
+# 24 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -259,7 +258,7 @@ WSL_DISTRO_NAME = Debian
 
 theMindServer.pro:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-04 11:50:26.9808215
+#  Last modified 2022-04-08 20:01:30.9368944
 #  File has been updated.
 #  Successfully updated.
 
@@ -270,7 +269,6 @@ theMindServer.pro:
 #  Successfully updated.
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf:
- 
 #  Implicit rule search has been done.
 #  Last modified 2018-11-25 13:51:11
 #  File has been updated.
@@ -280,7 +278,7 @@ rooms_list.pb.o: src/protos/rooms_list.pb.cc src/protos/rooms_list.pb.h src/prot
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 400):
+#  recipe to execute (from 'Makefile', line 407):
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rooms_list.pb.o src/protos/rooms_list.pb.cc
 
 # Not a target:
@@ -329,11 +327,12 @@ all: Makefile theMindServer
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 
-client.o: src/client/client.cpp src/client/client.h libs/socket/socket.h src/room/room.h src/protos/player.pb.h src/protos/rooms_list.pb.h src/protos/room.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h
+client.o: src/client/client.cpp src/client/client.h libs/socket/socket.h src/room/room.h src/protos/player_cards_map.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h src/protos/player.pb.h src/protos/rooms_list.pb.h src/protos/room.pb.h
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 378):
+#  Last modified 2022-04-08 19:50:55.1768944
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 384):
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o src/client/client.cpp
 
 FORCE:
@@ -361,8 +360,9 @@ FORCE:
 
 # Not a target:
 src/protos/rooms_list.pb.h:
+ 
 #  Implicit rule search has been done.
-#  Last modified 2022-04-04 14:51:09.6646775
+#  Last modified 2022-04-08 19:34:33.6268944
 #  File has been updated.
 #  Successfully updated.
 
@@ -382,7 +382,7 @@ distclean: clean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 336):
+#  recipe to execute (from 'Makefile', line 340):
 	-$(DEL_FILE) $(TARGET) 
 	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
@@ -413,7 +413,7 @@ first: all
 # Not a target:
 src/protos/card.pb.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-04 14:51:09.6746775
+#  Last modified 2022-04-08 19:34:33.6468944
 #  File has been updated.
 #  Successfully updated.
 
@@ -422,6 +422,12 @@ src/protos/card.pb.h:
 #  Last modified 2020-09-14 14:15:20
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+src/protos/player_cards_map.pb.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/protos/cards_list.pb.cc:
@@ -454,10 +460,10 @@ uninstall: FORCE
 
 Makefile: theMindServer.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/qconfig.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_edid_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_egl_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fb_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_glx_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_input_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_functions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf .qmake.stash /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/link_pkgconfig.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/thread.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/testcase_targets.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf theMindServer.pro
 #  Implicit rule search has not been done.
-#  Last modified 2022-04-08 15:10:05.8768944
+#  Last modified 2022-04-08 21:36:38.1029225
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 241):
+#  recipe to execute (from 'Makefile', line 245):
 	$(QMAKE) -o Makefile theMindServer.pro
 
 compiler_clean:
@@ -465,37 +471,18 @@ compiler_clean:
 #  Modification time never checked.
 #  File has not been updated.
 
-server.o: src/server.cpp libs/socket/socket.h src/client/client.h src/room/room.h src/protos/player.pb.h src/protos/rooms_list.pb.h src/protos/room.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h
+server.o: src/server.cpp libs/socket/socket.h src/client/client.h src/room/room.h src/protos/player_cards_map.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h src/protos/player.pb.h src/protos/rooms_list.pb.h src/protos/room.pb.h
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
-#  Last modified 2022-04-07 20:42:52.0228574
+#  Last modified 2022-04-08 19:50:49.3868944
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := server.o
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := src/server.cpp libs/socket/socket.h src/client/client.h src/room/room.h src/protos/player.pb.h src/protos/rooms_list.pb.h src/protos/room.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h
-# automatic
-# | := 
-# automatic
-# < := src/server.cpp
-# automatic
-# ^ := src/server.cpp libs/socket/socket.h src/client/client.h src/room/room.h src/protos/player.pb.h src/protos/rooms_list.pb.h src/protos/room.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h
-# automatic
-# ? := src/client/client.h
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=3/15=20%
-#  recipe to execute (from 'Makefile', line 368):
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 373):
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o server.o src/server.cpp
 
 # Not a target:
 src/room/room.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-04 17:07:21.8546775
+#  Last modified 2022-04-08 19:35:44.9068944
 #  File has been updated.
 #  Successfully updated.
 
@@ -515,7 +502,7 @@ cards_list.pb.o: src/protos/cards_list.pb.cc src/protos/cards_list.pb.h src/prot
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 407):
+#  recipe to execute (from 'Makefile', line 414):
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cards_list.pb.o src/protos/cards_list.pb.cc
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf:
@@ -535,7 +522,6 @@ compiler_lex_make_all:
 #  File has been updated.
 #  Successfully updated.
 
- 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri:
 #  Implicit rule search has been done.
 #  Last modified 2020-09-14 14:15:20
@@ -547,18 +533,39 @@ benchmark: first
 #  Modification time never checked.
 #  File has not been updated.
 
-room.o: src/room/room.cpp src/room/room.h src/client/client.h libs/socket/socket.h src/protos/player.pb.h src/protos/rooms_list.pb.h src/protos/room.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h
+room.o: src/room/room.cpp src/room/room.h src/client/client.h libs/socket/socket.h src/protos/player.pb.h src/protos/rooms_list.pb.h src/protos/room.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h src/protos/player_cards_map.pb.h
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 388):
+#  Implicit/static pattern stem: ''
+#  Last modified 2022-04-08 20:01:55.2268944
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := room.o
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := src/room/room.cpp src/room/room.h src/client/client.h libs/socket/socket.h src/protos/player.pb.h src/protos/rooms_list.pb.h src/protos/room.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h src/protos/player_cards_map.pb.h
+# automatic
+# | := 
+# automatic
+# < := src/room/room.cpp
+# automatic
+# ^ := src/room/room.cpp src/room/room.h src/client/client.h libs/socket/socket.h src/protos/player.pb.h src/protos/rooms_list.pb.h src/protos/room.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h src/protos/player_cards_map.pb.h
+# automatic
+# ? := src/room/room.cpp
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=3/15=20%
+#  recipe to execute (from 'Makefile', line 395):
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o room.o src/room/room.cpp
 
 # Not a target:
 src/room/room.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-04-08 20:02:31.3868944
+#  File has been updated.
+#  Successfully updated.
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base.conf:
 #  Implicit rule search has been done.
@@ -592,7 +599,7 @@ compiler_yacc_decl_make_all:
 # Not a target:
 src/protos/player.pb.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-04 14:51:09.6646775
+#  Last modified 2022-04-08 19:34:33.5868944
 #  File has been updated.
 #  Successfully updated.
 
@@ -612,7 +619,7 @@ player.pb.o: src/protos/player.pb.cc src/protos/player.pb.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 391):
+#  recipe to execute (from 'Makefile', line 398):
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.pb.o src/protos/player.pb.cc
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_kms_support_private.pri:
@@ -622,6 +629,7 @@ player.pb.o: src/protos/player.pb.cc src/protos/player.pb.h
 #  Successfully updated.
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2020-09-14 14:15:20
 #  File has been updated.
@@ -645,14 +653,14 @@ player.pb.o: src/protos/player.pb.cc src/protos/player.pb.h
 #  File has been updated.
 #  Successfully updated.
 
-theMindServer: socket.o server.o client.o room.o player.pb.o room.pb.o rooms_list.pb.o card.pb.o cards_list.pb.o
+theMindServer: socket.o server.o client.o room.o player.pb.o room.pb.o rooms_list.pb.o card.pb.o cards_list.pb.o player_cards_map.pb.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-04-07 20:42:54.5128574
+#  Last modified 2022-04-08 20:02:02.4068944
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/7=0%
-#  recipe to execute (from 'Makefile', line 167):
+#  recipe to execute (from 'Makefile', line 171):
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri:
@@ -670,7 +678,7 @@ theMindServer: socket.o server.o client.o room.o player.pb.o room.pb.o rooms_lis
 # Not a target:
 src/server.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-03 16:35:45.459397
+#  Last modified 2022-04-08 15:10:26.8668944
 #  File has been updated.
 #  Successfully updated.
 
@@ -684,7 +692,7 @@ room.pb.o: src/protos/room.pb.cc src/protos/room.pb.h src/protos/player.pb.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 395):
+#  recipe to execute (from 'Makefile', line 402):
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o room.pb.o src/protos/room.pb.cc
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
@@ -735,9 +743,16 @@ compiler_yacc_impl_make_all:
 #  Successfully updated.
 
 # Not a target:
+src/protos/player_cards_map.pb.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-08 19:34:33.6768944
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
 src/protos/cards_list.pb.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-04 14:51:09.6746775
+#  Last modified 2022-04-08 19:34:33.6568944
 #  File has been updated.
 #  Successfully updated.
 
@@ -757,13 +772,20 @@ qmake: FORCE
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 315):
+#  recipe to execute (from 'Makefile', line 319):
 	@$(QMAKE) -o Makefile theMindServer.pro
+
+player_cards_map.pb.o: src/protos/player_cards_map.pb.cc src/protos/player_cards_map.pb.h src/protos/cards_list.pb.h src/protos/card.pb.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 419):
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player_cards_map.pb.o src/protos/player_cards_map.pb.cc
 
 # Not a target:
 src/client/client.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-07 21:03:30.3828574
+#  Last modified 2022-04-08 15:11:00.8368944
 #  File has been updated.
 #  Successfully updated.
 
@@ -782,7 +804,7 @@ src/client/client.h:
 # Not a target:
 src/protos/room.pb.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-04 14:51:09.6646775
+#  Last modified 2022-04-08 19:34:33.6068944
 #  File has been updated.
 #  Successfully updated.
 
@@ -808,7 +830,7 @@ dist: distdir FORCE
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 323):
+#  recipe to execute (from 'Makefile', line 327):
 	(cd `dirname $(DISTDIR)` && $(TAR) $(DISTNAME).tar $(DISTNAME) && $(COMPRESS) $(DISTNAME).tar) && $(MOVE) `dirname $(DISTDIR)`/$(DISTNAME).tar.gz . && $(DEL_FILE) -r $(DISTDIR)
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent_private.pri:
@@ -816,7 +838,6 @@ dist: distdir FORCE
 #  Last modified 2020-09-14 14:15:20
 #  File has been updated.
 #  Successfully updated.
- 
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_functions.prf:
 #  Implicit rule search has been done.
@@ -850,9 +871,10 @@ dist: distdir FORCE
 
 # Not a target:
 src/client/client.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-04-08 17:15:39.4568944
+#  File has been updated.
+#  Successfully updated.
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/link_pkgconfig.prf:
 #  Implicit rule search has been done.
@@ -887,6 +909,7 @@ src/protos/rooms_list.pb.cc:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 #  Implicit rule search has been done.
 #  Last modified 2018-11-25 13:51:11
+ 
 #  File has been updated.
 #  Successfully updated.
 
@@ -929,7 +952,7 @@ socket.o: libs/socket/socket.cpp libs/socket/socket.h
 #  Last modified 2022-04-06 18:30:12.7379186
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 358):
+#  recipe to execute (from 'Makefile', line 362):
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o socket.o libs/socket/socket.cpp
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf:
@@ -959,14 +982,14 @@ card.pb.o: src/protos/card.pb.cc src/protos/card.pb.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 403):
+#  recipe to execute (from 'Makefile', line 410):
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o card.pb.o src/protos/card.pb.cc
 
 distdir: FORCE
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 326):
+#  recipe to execute (from 'Makefile', line 330):
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 
@@ -1003,7 +1026,7 @@ clean: compiler_clean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 331):
+#  recipe to execute (from 'Makefile', line 335):
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core
 
@@ -1025,19 +1048,19 @@ install: FORCE
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=122/1024=12%, Rehash=0, Collisions=18/359=5%
+# Load=125/1024=12%, Rehash=0, Collisions=18/371=5%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 134 / storage = 5764 B / avg = 43 B
-# current buf: size = 8162 B / used = 5764 B / count = 134 / avg = 43 B
+# strcache buffers: 1 (0) / strings = 137 / storage = 5853 B / avg = 42 B
+# current buf: size = 8162 B / used = 5853 B / count = 137 / avg = 42 B
 
-# strcache performance: lookups = 379 / hit rate = 64%
+# strcache performance: lookups = 390 / hit rate = 64%
 # hash-table stats:
-# Load=134/8192=2%, Rehash=0, Collisions=1/379=0%
-# Finished Make data base on Fri Apr  8 15:10:06 2022
+# Load=137/8192=2%, Rehash=0, Collisions=1/390=0%
+# Finished Make data base on Fri Apr  8 21:36:38 2022
 
  

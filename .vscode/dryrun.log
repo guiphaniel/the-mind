@@ -11,6 +11,7 @@ g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/so
 g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o rooms_list.pb.o src/protos/rooms_list.pb.cc
 g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o card.pb.o src/protos/card.pb.cc
 g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o cards_list.pb.o src/protos/cards_list.pb.cc
-g++  -o theMindServer socket.o server.o client.o room.o player.pb.o room.pb.o rooms_list.pb.o card.pb.o cards_list.pb.o   -pthread -L/usr/local/lib -lprotobuf -lpthread 
+g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o player_cards_map.pb.o src/protos/player_cards_map.pb.cc
+g++  -o theMindServer socket.o server.o client.o room.o player.pb.o room.pb.o rooms_list.pb.o card.pb.o cards_list.pb.o player_cards_map.pb.o   -pthread -L/usr/local/lib -lprotobuf -lpthread 
 make: Leaving directory '/home/guiphaniel/documents/iut/semestre4/theMind'
  

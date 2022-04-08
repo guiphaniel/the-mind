@@ -187,11 +187,13 @@ void Client::onJoinRqc(string msg) {
 }
 
 void Client::onQuitRqc() {
+    cards->clear();
     vector<Client*>* clients = room->getClients();
     clients->erase(std::remove(clients->begin(), clients->end(), this), clients->end());
 
     if(clients->size() <= 0) {
         rooms->erase(std::remove(rooms->begin(), rooms->end(), room), rooms->end());
+        cout << "Client " << id << " " << pseudo << " has left the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
         delete room;
         room = nullptr;
         send("ACK_");
@@ -229,10 +231,9 @@ void Client::onFocuRqc() {
         c->setFocus(false);
         c->send("RESM");
     }
-    cout << "Everyone in room " << room->getId() << " " << room->getName() << " " << " is now focused. Resuming the game..." << endl;
+    cout << "Everyone in room " << room->getId() << " " << room->getName() << " is now focused. Resuming the game..." << endl;
 }
 
-//TODO:
 void Client::onPutRqc(int32_t card) {
     // check if the client has this card
     if(!count(cards->begin(), cards->end(), card)) {
@@ -247,7 +248,7 @@ void Client::onPutRqc(int32_t card) {
     }
 
     send("ACK_");
-    cout << "Client " << id << " " << pseudo << " in room " << room->getId() << " " << room->getName() << "has played the card " << card << endl;
+    cout << "Client " << id << " " << pseudo << " in room " << room->getId() << " " << room->getName() << " has played the card " << card << endl;
     
     cards->erase(std::remove(cards->begin(), cards->end(), card), cards->end());
     
