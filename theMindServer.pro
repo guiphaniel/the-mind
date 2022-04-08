@@ -22,6 +22,7 @@ HEADERS += \
     src/protos/rooms_list.pb.h \
     src/protos/card.pb.h \
     src/protos/cards_list.pb.h \
+    src/protos/player_cards_map.pb.h \
 
 SOURCES += \
     libs/socket/socket.cpp \
@@ -33,3 +34,4 @@ SOURCES += \
     src/protos/rooms_list.pb.cc \
     src/protos/card.pb.cc \
     src/protos/cards_list.pb.cc \
+    src/protos/player_cards_map.pb.cc \

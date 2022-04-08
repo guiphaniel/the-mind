@@ -76,15 +76,18 @@ void Room::deal() {
 
     // deal the cards
     for(Client* client : *clients) {
+        vector<int> * clientCards = client->getCards();
         for (size_t i = 0; i <= MAX_LEVELS - levels.size(); i++)
         {
-            client->getCards()->push_back(cards.back());
+            clientCards->push_back(cards.back());
             cards.pop_back();
         }
 
+        sort(clientCards->begin(), clientCards->end());
+
         // genereate cards list proto
         CardsListProto cardsListProto;
-        for(int32_t card : *client->getCards()) {
+        for(int32_t card : *clientCards) {
             CardProto* cardProto = cardsListProto.add_card();
             cardProto->set_value(card);
         }
@@ -93,4 +96,37 @@ void Room::deal() {
         client->send("DEAL " + to_string(bonus) + " " + cardsListProto.SerializeAsString());
         client->setWaitingForAck(true);
     }
+}
+void Room::putCard(int32_t idClient, int32_t card) {
+    //gerer la bad order + ne pas oublier la gestion des ACK_
+    for(Client* c : *clients) {
+        c->send("PUT_ " + to_string(idClient) + " " + to_string(card) + '\0');
+        c->setWaitingForAck(true);
+    }
+
+    // check if other payers have lower cards
+    PlayerCardsMapProto map;
+    for(Client* client : *clients) {
+        CardsListProto lowerCards;
+        for(int32_t c : *client->getCards()) {
+            if(c < card) {
+                CardProto* cardProto = lowerCards.add_card();
+                cardProto->set_value(c);
+            }
+        }
+        if (lowerCards.card_size() > 0) {
+            auto& mapCards = *map.mutable_cards();
+            mapCards[client->getId()] = lowerCards;
+        }
+    }
+
+    // if so, trigger BADO
+    if (map.cards_size() > 0)
+    {
+        for(Client* client : *clients) {
+            client->send("BADO " + map.SerializeAsString());
+            client->setWaitingForAck(true);
+        }
+    }
+    
 }

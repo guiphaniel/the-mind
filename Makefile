@@ -58,7 +58,8 @@ SOURCES       = libs/socket/socket.cpp \
 		src/protos/room.pb.cc \
 		src/protos/rooms_list.pb.cc \
 		src/protos/card.pb.cc \
-		src/protos/cards_list.pb.cc 
+		src/protos/cards_list.pb.cc \
+		src/protos/player_cards_map.pb.cc 
 OBJECTS       = socket.o \
 		server.o \
 		client.o \
@@ -67,7 +68,8 @@ OBJECTS       = socket.o \
 		room.pb.o \
 		rooms_list.pb.o \
 		card.pb.o \
-		cards_list.pb.o
+		cards_list.pb.o \
+		player_cards_map.pb.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -146,7 +148,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/protos/room.pb.h \
 		src/protos/rooms_list.pb.h \
 		src/protos/card.pb.h \
-		src/protos/cards_list.pb.h libs/socket/socket.cpp \
+		src/protos/cards_list.pb.h \
+		src/protos/player_cards_map.pb.h libs/socket/socket.cpp \
 		src/server.cpp \
 		src/client/client.cpp \
 		src/room/room.cpp \
@@ -154,7 +157,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/protos/room.pb.cc \
 		src/protos/rooms_list.pb.cc \
 		src/protos/card.pb.cc \
-		src/protos/cards_list.pb.cc
+		src/protos/cards_list.pb.cc \
+		src/protos/player_cards_map.pb.cc
 QMAKE_TARGET  = theMindServer
 DESTDIR       = 
 TARGET        = theMindServer
@@ -360,21 +364,23 @@ socket.o: libs/socket/socket.cpp libs/socket/socket.h
 server.o: src/server.cpp libs/socket/socket.h \
 		src/client/client.h \
 		src/room/room.h \
+		src/protos/player_cards_map.pb.h \
+		src/protos/cards_list.pb.h \
+		src/protos/card.pb.h \
 		src/protos/player.pb.h \
 		src/protos/rooms_list.pb.h \
-		src/protos/room.pb.h \
-		src/protos/cards_list.pb.h \
-		src/protos/card.pb.h
+		src/protos/room.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o server.o src/server.cpp
 
 client.o: src/client/client.cpp src/client/client.h \
 		libs/socket/socket.h \
 		src/room/room.h \
+		src/protos/player_cards_map.pb.h \
+		src/protos/cards_list.pb.h \
+		src/protos/card.pb.h \
 		src/protos/player.pb.h \
 		src/protos/rooms_list.pb.h \
-		src/protos/room.pb.h \
-		src/protos/cards_list.pb.h \
-		src/protos/card.pb.h
+		src/protos/room.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o src/client/client.cpp
 
 room.o: src/room/room.cpp src/room/room.h \
@@ -384,7 +390,8 @@ room.o: src/room/room.cpp src/room/room.h \
 		src/protos/rooms_list.pb.h \
 		src/protos/room.pb.h \
 		src/protos/cards_list.pb.h \
-		src/protos/card.pb.h
+		src/protos/card.pb.h \
+		src/protos/player_cards_map.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o room.o src/room/room.cpp
 
 player.pb.o: src/protos/player.pb.cc src/protos/player.pb.h
@@ -405,6 +412,11 @@ card.pb.o: src/protos/card.pb.cc src/protos/card.pb.h
 cards_list.pb.o: src/protos/cards_list.pb.cc src/protos/cards_list.pb.h \
 		src/protos/card.pb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cards_list.pb.o src/protos/cards_list.pb.cc
+
+player_cards_map.pb.o: src/protos/player_cards_map.pb.cc src/protos/player_cards_map.pb.h \
+		src/protos/cards_list.pb.h \
+		src/protos/card.pb.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player_cards_map.pb.o src/protos/player_cards_map.pb.cc
 
 ####### Install
 

@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+import "cards_list.proto";
+
+package protos;
+
+message PlayerCardsMapProto {
+  map<int32, CardsListProto> cards = 1;
+}

@@ -7,6 +7,7 @@
 #include <random>       // std::default_random_engine
 #include <chrono> 
 #include "client.h"
+#include "player_cards_map.pb.h"
 
 #ifndef ROOM_H
 #define ROOM_H
@@ -54,6 +55,7 @@ public:
 
     void start();
     void deal();
+    void putCard(int32_t idClient, int32_t card);
 
 private:
     static int32_t nextId;

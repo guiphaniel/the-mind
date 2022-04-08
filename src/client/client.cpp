@@ -240,7 +240,18 @@ void Client::onPutRqc(int32_t card) {
         return;
     }
 
+    // check if the card played is the smallest card of the player
+    if(card != *cards->begin()) {
+        send("ERRO 5");
+        return;
+    }
+
+    send("ACK_");
+    cout << "Client " << id << " " << pseudo << " in room " << room->getId() << " " << room->getName() << "has played the card " << card << endl;
     
+    cards->erase(std::remove(cards->begin(), cards->end(), card), cards->end());
+    
+    room->putCard(id, card);    
 }
 
 vector<string> splitString(string str, string delimiter)
