@@ -60,7 +60,8 @@ void Room::deal() {
     }
 
     //shuffle the cards
-    random_shuffle(cards.begin(), cards.end());
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    shuffle(cards.begin(), cards.end(), default_random_engine(seed));
     
     // get the bonus corresponding to the level
     Bonus bonus;
