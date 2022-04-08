@@ -45,6 +45,7 @@ Client* Room::findPlayerById(int32_t id) {
 
 
 void Room::start() {
+    cout << "Starting the game for the room " << id << " " << name << endl;
     for(Client* c : *clients) {
         // start the game and give as many lives as players
         c->send("STRT " + to_string(clients->size()) + '\0');
@@ -53,6 +54,7 @@ void Room::start() {
 }
 
 void Room::deal() {
+    cout << "Dealing the cards for the room " << id << " " << name << ". Round : " << MAX_LEVELS - levels.size() + 1 << "/" << MAX_LEVELS << endl;
     // put the played cards back in the main deck
     while(!playedCards.empty()) {
         cards.push_back(playedCards.back());

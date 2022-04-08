@@ -204,13 +204,17 @@ void Client::onQuitRqc() {
         c->send("LEFP " + to_string(id) + '\0');
     }
 
+    cout << "Client " << id << " " << pseudo << " has left the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
+    
     room = nullptr;
 }
 
 void Client::onFocuRqc() {
-    if (room->getState() == PLAY)
+    cout << "Client " << id << " " << pseudo << " focused" << endl;
+    if (room->getState() == PLAY) {
         room->setState(FOCU);
-
+    }
+        
     focus = true;
 
     // check if all clients are focused
@@ -224,6 +228,7 @@ void Client::onFocuRqc() {
     for(Client* c : *room->getClients()) {
         c->send("RESM");
     }
+    cout << "Everyone in room " << room->getId() << " " << room->getName() << " " << " is now focused. Resuming the game..." << endl;
 }
 
 //TODO:
