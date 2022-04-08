@@ -226,6 +226,7 @@ void Client::onFocuRqc() {
     // if so, resume the game
     room->setState(PLAY);
     for(Client* c : *room->getClients()) {
+        c->setFocus(false);
         c->send("RESM");
     }
     cout << "Everyone in room " << room->getId() << " " << room->getName() << " " << " is now focused. Resuming the game..." << endl;
