@@ -2,7 +2,7 @@
 
 int32_t Room::nextId = 0;
 
-Room::Room() : id(nextId++)
+Room::Room() : id(nextId++), state(WAIT)
 {
     clients = new vector<Client*>();
 
