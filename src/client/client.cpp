@@ -49,19 +49,20 @@ void Client::run() {
         string token = msg.substr(0, 4);
         
         if(token == "DISC") {
-            onDiscRqc();
+            thread(&Client::onDiscRqc, this).detach();
         } else if(token == "CREA") {
             string content = msg.substr(5, string::npos);
-            onCreaRqc(content);
+            thread(&Client::onCreaRqc, this, content).detach();
         } else if(token == "JOIN") {
             string content = msg.substr(5, string::npos);
-            onJoinRqc(content);
+            thread(&Client::onJoinRqc, this, content).detach();
         } else if(token == "QUIT") {
-            onQuitRqc();
+            thread(&Client::onQuitRqc, this).detach();
         } else if(token == "FOCU") {
-            onFocuRqc();
+            thread(&Client::onFocuRqc, this).detach();
         } else if(token == "PUT_") {
-            onPutRqc(stoi(msg.substr(5, string::npos)));
+            int32_t card = stoi(msg.substr(5, string::npos));
+            thread(&Client::onPutRqc, this, card).detach();
         } else if(token == "ACK_") {
             setWaitingForAck(false);
         } else {

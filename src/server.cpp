@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 
         clients.push_back(client);
 
-       thread th = std::thread(&Client::run, client);
+       thread th = thread(&Client::run, client);
        th.detach();
     }
 
