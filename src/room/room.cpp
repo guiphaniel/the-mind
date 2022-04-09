@@ -5,27 +5,6 @@ int32_t Room::nextId = 0;
 Room::Room() : id(nextId++), state(WAIT)
 {
     clients = new vector<Client*>();
-
-    // init cards
-    for (size_t i = 1; i <= 100; i++)
-    {
-        cards.push_back(i);
-    }
-
-    //init lives
-    nbLives = clients->size();
-
-    //init shur
-    nbShurs = 1;
-    
-    // init levels bonuses
-    for (size_t i = 0; i < MAX_LEVELS; i++)
-    {
-        if (i < 10)
-            levels.push(Level{ static_cast<Bonus>(NONE + i % 3) });
-        else
-            levels.push(Level{ NONE });
-    }
 }
 
 Room::~Room()
@@ -49,9 +28,36 @@ Client* Room::findPlayerById(int32_t id) {
     return nullptr;
 }
 
+void Room::init() {
+    //init lives
+    nbLives = clients->size();
+
+    //init shur
+    nbShurs = 1;
+
+    // init cards
+    for (size_t i = 1; i <= 100; i++)
+    {
+        cards.push_back(i);
+    }
+    
+    // init levels bonuses
+    levels.push(Level{ NONE }); //first level
+    for (size_t i = 0; i < MAX_LEVELS; i++)
+    {
+        if (i < 10)
+            levels.push(Level{ static_cast<Bonus>(NONE + i % 3) });
+        else
+            levels.push(Level{ NONE });
+    }
+}
+
 
 void Room::start() {
     cout << "Starting the game for the room " << id << " " << name << endl;
+    
+    init();
+
     for(Client* c : *clients) {
         // start the game and give as many lives as players
         c->send("STRT " + to_string(nbLives) + " " + to_string(nbShurs) + '\0');
@@ -72,13 +78,8 @@ void Room::deal() {
     shuffle(cards.begin(), cards.end(), default_random_engine(seed));
     
     // get the bonus corresponding to the level
-    Bonus bonus;
-    if (levels.size() >= MAX_LEVELS) // if it's the first round, don't give any bonus
-        bonus = NONE;
-    else {
-        bonus = levels.top().bonus;
-        levels.pop();
-    }
+    Bonus bonus = levels.top().bonus;
+    levels.pop();
 
     if (bonus == LIFE)
     {
@@ -158,11 +159,11 @@ void Room::putCard(int32_t idClient, int32_t card) {
             client->send("BADO " + map.SerializeAsString());
             client->setWaitingForAck(true);
         }
-    }
 
-    nbLives--;
-    // if the game is lost, go back to waiting room
-    if(nbLives <= 0) {
-        state = WAIT;
+        nbLives--;
+        // if the game is lost, go back to waiting room
+        if(nbLives <= 0) {
+            state = WAIT;
+        }
     }
 }

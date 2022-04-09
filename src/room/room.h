@@ -53,6 +53,7 @@ public:
 
     Client* findPlayerById(int32_t id);
 
+    void init();
     void start();
     void deal();
     void putCard(int32_t idClient, int32_t card);
