@@ -17,10 +17,12 @@ Client::~Client() {
     //fr
     if (room != nullptr)
     {
+        // leave the room
         vector<Client*>* roomClients = room->getClients();
         roomClients->erase(std::remove(roomClients->begin(), roomClients->end(), this), roomClients->end());
 
-        if(clients->size() <= 0) {
+        // if th room is empty, remove it
+        if(roomClients->size() <= 0) {
             rooms->erase(std::remove(rooms->begin(), rooms->end(), room), rooms->end());
             cout << "Client " << id << " " << pseudo << " has left the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
             delete room;
