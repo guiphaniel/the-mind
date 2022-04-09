@@ -16,65 +16,74 @@
 #include <google/protobuf/port_def.inc>
 
 PROTOBUF_PRAGMA_INIT_SEG
+
+namespace _pb = ::PROTOBUF_NAMESPACE_ID;
+namespace _pbi = _pb::internal;
+
 namespace protos {
-constexpr CardProto::CardProto(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : value_(0){}
+PROTOBUF_CONSTEXPR CardProto::CardProto(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.value_)*/0} {}
 struct CardProtoDefaultTypeInternal {
-  constexpr CardProtoDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR CardProtoDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
   ~CardProtoDefaultTypeInternal() {}
   union {
     CardProto _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT CardProtoDefaultTypeInternal _CardProto_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CardProtoDefaultTypeInternal _CardProto_default_instance_;
 }  // namespace protos
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_card_2eproto[1];
-static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_card_2eproto = nullptr;
-static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_card_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_card_2eproto[1];
+static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_card_2eproto = nullptr;
+static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_card_2eproto = nullptr;
 
-const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_card_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  PROTOBUF_FIELD_OFFSET(::protos::CardProto, _has_bits_),
+const uint32_t TableStruct_card_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  PROTOBUF_FIELD_OFFSET(::protos::CardProto, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::protos::CardProto, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::protos::CardProto, value_),
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::protos::CardProto, _impl_.value_),
   0,
 };
-static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 6, sizeof(::protos::CardProto)},
+static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  { 0, 7, -1, sizeof(::protos::CardProto)},
 };
 
-static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::protos::_CardProto_default_instance_),
+static const ::_pb::Message* const file_default_instances[] = {
+  &::protos::_CardProto_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_card_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\ncard.proto\022\006protos\"\032\n\tCardProto\022\r\n\005val"
   "ue\030\001 \002(\005"
   ;
-static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_card_2eproto_once;
-const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_card_2eproto = {
-  false, false, 48, descriptor_table_protodef_card_2eproto, "card.proto", 
-  &descriptor_table_card_2eproto_once, nullptr, 0, 1,
-  schemas, file_default_instances, TableStruct_card_2eproto::offsets,
-  file_level_metadata_card_2eproto, file_level_enum_descriptors_card_2eproto, file_level_service_descriptors_card_2eproto,
+static ::_pbi::once_flag descriptor_table_card_2eproto_once;
+const ::_pbi::DescriptorTable descriptor_table_card_2eproto = {
+    false, false, 48, descriptor_table_protodef_card_2eproto,
+    "card.proto",
+    &descriptor_table_card_2eproto_once, nullptr, 0, 1,
+    schemas, file_default_instances, TableStruct_card_2eproto::offsets,
+    file_level_metadata_card_2eproto, file_level_enum_descriptors_card_2eproto,
+    file_level_service_descriptors_card_2eproto,
 };
-PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable* descriptor_table_card_2eproto_getter() {
+PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_card_2eproto_getter() {
   return &descriptor_table_card_2eproto;
 }
 
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_card_2eproto(&descriptor_table_card_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_card_2eproto(&descriptor_table_card_2eproto);
 namespace protos {
 
 // ===================================================================
 
 class CardProto::_Internal {
  public:
-  using HasBits = decltype(std::declval<CardProto>()._has_bits_);
+  using HasBits = decltype(std::declval<CardProto>()._impl_._has_bits_);
   static void set_has_value(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -86,110 +95,115 @@ class CardProto::_Internal {
 CardProto::CardProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:protos.CardProto)
 }
 CardProto::CardProto(const CardProto& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.value_){}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  value_ = from.value_;
+  _impl_.value_ = from._impl_.value_;
   // @@protoc_insertion_point(copy_constructor:protos.CardProto)
 }
 
-inline void CardProto::SharedCtor() {
-value_ = 0;
+inline void CardProto::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.value_){0}
+  };
 }
 
 CardProto::~CardProto() {
   // @@protoc_insertion_point(destructor:protos.CardProto)
-  if (GetArenaForAllocation() != nullptr) return;
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 inline void CardProto::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-void CardProto::ArenaDtor(void* object) {
-  CardProto* _this = reinterpret_cast< CardProto* >(object);
-  (void)_this;
-}
-void CardProto::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void CardProto::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void CardProto::Clear() {
 // @@protoc_insertion_point(message_clear_start:protos.CardProto)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  value_ = 0;
-  _has_bits_.Clear();
+  _impl_.value_ = 0;
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* CardProto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* CardProto::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // required int32 value = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _Internal::set_has_value(&has_bits);
-          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
-  _has_bits_.Or(has_bits);
+message_done:
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* CardProto::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* CardProto::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:protos.CardProto)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   // required int32 value = 1;
   if (cached_has_bits & 0x00000001u) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_value(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_value(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:protos.CardProto)
@@ -202,21 +216,13 @@ size_t CardProto::ByteSizeLong() const {
 
   // required int32 value = 1;
   if (_internal_has_value()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-        this->_internal_value());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_value());
   }
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CardProto::_class_data_ = {
@@ -225,8 +231,8 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CardProto::_class_data_ = {
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CardProto::GetClassData() const { return &_class_data_; }
 
-void CardProto::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
+void CardProto::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
   static_cast<CardProto *>(to)->MergeFrom(
       static_cast<const CardProto &>(from));
 }
@@ -235,7 +241,7 @@ void CardProto::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
 void CardProto::MergeFrom(const CardProto& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:protos.CardProto)
   GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_value()) {
@@ -252,19 +258,19 @@ void CardProto::CopyFrom(const CardProto& from) {
 }
 
 bool CardProto::IsInitialized() const {
-  if (_Internal::MissingRequiredFields(_has_bits_)) return false;
+  if (_Internal::MissingRequiredFields(_impl_._has_bits_)) return false;
   return true;
 }
 
 void CardProto::InternalSwap(CardProto* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
-  swap(value_, other->value_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.value_, other->_impl_.value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CardProto::GetMetadata() const {
-  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+  return ::_pbi::AssignDescriptors(
       &descriptor_table_card_2eproto_getter, &descriptor_table_card_2eproto_once,
       file_level_metadata_card_2eproto[0]);
 }
@@ -272,7 +278,8 @@ void CardProto::InternalSwap(CardProto* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace protos
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::protos::CardProto* Arena::CreateMaybeMessage< ::protos::CardProto >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::protos::CardProto*
+Arena::CreateMaybeMessage< ::protos::CardProto >(Arena* arena) {
   return Arena::CreateMessageInternal< ::protos::CardProto >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
