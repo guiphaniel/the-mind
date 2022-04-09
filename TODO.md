@@ -1,6 +1,4 @@
-PUT (nb : quand un joueur pose une carte, il faut l'ajouter à la liste playedCards de room. + verifier que la room a bien à state == à PLAY)
-max 5 vies + 3 shurikens
-Changer la seed du shuffle random
+SHUR + RECO
 
 mettre des logs (afficher qui fait quoi)
 verfifer les argument (bon nombre, valeur acceptable)
