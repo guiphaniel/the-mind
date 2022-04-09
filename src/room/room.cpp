@@ -83,11 +83,17 @@ void Room::deal() {
 
     if (bonus == LIFE)
     {
-        nbLives++;
+        if(nbLives < MAX_LIVES)
+            nbLives++;
+        else
+            bonus = NONE;
     }
     else if (bonus == SHUR)
     {
-        nbShurs++;
+        if(nbShurs < MAX_SHURS)
+            nbShurs++;
+        else
+            bonus = NONE;
     }
     
 
@@ -115,7 +121,8 @@ void Room::deal() {
     }
 }
 void Room::putCard(int32_t idClient, int32_t card) {
-    //gerer la bad order + ne pas oublier la gestion des ACK_
+    playedCards.push_back(card);
+
     for(Client* c : *clients) {
         c->send("PUT_ " + to_string(idClient) + " " + to_string(card) + '\0');
         c->setWaitingForAck(true);

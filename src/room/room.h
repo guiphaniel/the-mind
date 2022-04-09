@@ -16,10 +16,13 @@
 
 #define MAX_ROOM_SIZE 4
 #define MAX_LEVELS 12
+#define MAX_LIVES 5
+#define MAX_SHURS 3
+
 
 using namespace std;
 
-enum RoomState { WAIT, FOCU, PLAY, LEFP };
+enum RoomState { WAIT, FOCU, SHURI, PLAY, LEFP };
 
 enum Bonus { NONE, SHUR, LIFE };
 
