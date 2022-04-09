@@ -34,6 +34,7 @@ private:
     string pseudo;
     vector<int32_t>* cards;
     bool focus;
+    bool shur;
     bool waitingForAck;
     mutex waitMutex;
     condition_variable waitCv;
@@ -44,6 +45,8 @@ private:
     void onQuitRqc();
     void onFocuRqc();
     void onPutRqc(int32_t card);
+    void onShurRqc();
+    void onShurRpl(string reply);
 public:
     Client(vector<Client*>* clients, vector<Room*>* rooms);
     ~Client();

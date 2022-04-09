@@ -7,9 +7,8 @@ int32_t Client::nextId = 0;
 
 vector<string> splitString(string str, string delimiter = " ");
 
-Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms), room(nullptr), id(nextId++), focus(false) {
+Client::Client(vector<Client*>* clients, vector<Room*>* rooms) : clients(clients), rooms(rooms), room(nullptr), id(nextId++), focus(false), shur(false), waitingForAck(false) {
     cards = new vector<int32_t>;
-    waitingForAck = false;
 }
 
 Client::~Client() {
@@ -63,6 +62,10 @@ void Client::run() {
         } else if(token == "PUT_") {
             int32_t card = stoi(msg.substr(5, string::npos));
             thread(&Client::onPutRqc, this, card).detach();
+        } else if(token == "SHUR") {
+            thread(&Client::onShurRqc, this).detach();
+        } else if(token == "OK__" || token == "NOK_") {
+            thread(&Client::onShurRpl, this, token).detach();
         } else if(token == "ACK_") {
             setWaitingForAck(false);
         } else {
@@ -268,6 +271,63 @@ void Client::onPutRqc(int32_t card) {
     cards->erase(std::remove(cards->begin(), cards->end(), card), cards->end());
     
     room->putCard(id, card);    
+}
+
+void Client::onShurRqc() {
+    // check if the game is playing
+    if (room->getState() != PLAY) {
+        send("44");
+        return;
+    }  
+
+    cout << "Client " << id << " " << pseudo << " in room " << room->getId() << " " << room->getName() << " has asked for the use of a shuriken." << endl;
+    
+    send("ACK_");
+
+    shur = true;
+    room->setState(SHURI);
+    for(Client * c : *room->getClients()) {
+        c->send("SHUR " + to_string(id));
+    }
+}
+
+void Client::onShurRpl(string reply) {
+    if (reply == "OK__") {
+        shur = true;
+
+        // check if everybody is ok to use the shur
+        for(Client * c : *room->getClients()) {
+            if(c->shur == false)
+                return;
+        }
+
+        // if so, send the result
+        PlayerCardsMapProto map;
+        auto& mapCards = *map.mutable_cards();
+        for(Client * c : *room->getClients()) {
+            CardsListProto lowestCard;
+            CardProto* card = lowestCard.add_card();
+            card->set_value(*c->cards->begin());
+
+            // remove the first card
+            if(!c->cards->empty())
+                c->cards->erase(c->cards->begin());
+
+            mapCards[c->id] = lowestCard;
+        }
+
+        for(Client * c : *room->getClients()) {
+            c->send("RES_ OK__ " + map.SerializeAsString());
+        }
+
+        room->setState(PLAY);
+    } else {
+        for(Client * c : *room->getClients()) {
+            c->send("RES_ NOK_ ");
+        }
+
+        room->setState(PLAY);
+    }
 }
 
 vector<string> splitString(string str, string delimiter)
