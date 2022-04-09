@@ -220,6 +220,14 @@ void Client::onFocuRqc() {
         
     focus = true;
 
+    send("ACK_");
+
+    // warn other clients that this one focused
+    for(Client* c : *room->getClients()) {
+        c->send("FOCU " + to_string(id)); //TODO: '\0' ?
+        c->setWaitingForAck(true);
+    }
+
     // check if all clients are focused
     for(Client* c : *room->getClients()) {
         if(!c->isFocused())
