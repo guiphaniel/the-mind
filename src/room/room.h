@@ -65,6 +65,8 @@ private:
     vector<Client*>* clients;
     RoomState state;
     stack<Level> levels;
+    int32_t nbLives;
+    int32_t nbShurs;
     vector<int32_t> cards;
     vector<int32_t> playedCards;
 };

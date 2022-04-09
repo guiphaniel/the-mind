@@ -12,6 +12,12 @@ Room::Room() : id(nextId++), state(WAIT)
         cards.push_back(i);
     }
 
+    //init lives
+    nbLives = clients->size();
+
+    //init shur
+    nbShurs = 1;
+    
     // init levels bonuses
     for (size_t i = 0; i < MAX_LEVELS; i++)
     {
@@ -48,7 +54,7 @@ void Room::start() {
     cout << "Starting the game for the room " << id << " " << name << endl;
     for(Client* c : *clients) {
         // start the game and give as many lives as players
-        c->send("STRT " + to_string(clients->size()) + '\0');
+        c->send("STRT " + to_string(nbLives) + " " + to_string(nbShurs) + '\0');
         c->setWaitingForAck(true);
     }
 }
@@ -73,6 +79,16 @@ void Room::deal() {
         bonus = levels.top().bonus;
         levels.pop();
     }
+
+    if (bonus == LIFE)
+    {
+        nbLives++;
+    }
+    else if (bonus == SHUR)
+    {
+        nbShurs++;
+    }
+    
 
     // deal the cards
     for(Client* client : *clients) {
@@ -104,6 +120,21 @@ void Room::putCard(int32_t idClient, int32_t card) {
         c->setWaitingForAck(true);
     }
 
+    // check if it's the last card to play
+    bool lastCard = true;
+    for(Client* client : *clients) {
+        if(!client->getCards()->empty())
+            lastCard = false;
+    }
+
+    if (lastCard)
+    {
+        cout << "Round : " << MAX_LEVELS - levels.size() + 1 << "/" << MAX_LEVELS << " has been won in the room " << id << " " << name << endl;
+        deal();
+        return;
+    }
+    
+
     // check if other payers have lower cards
     PlayerCardsMapProto map;
     for(Client* client : *clients) {
@@ -128,5 +159,10 @@ void Room::putCard(int32_t idClient, int32_t card) {
             client->setWaitingForAck(true);
         }
     }
-    
+
+    nbLives--;
+    // if the game is lost, go back to waiting room
+    if(nbLives <= 0) {
+        state = WAIT;
+    }
 }

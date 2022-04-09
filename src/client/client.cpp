@@ -236,15 +236,21 @@ void Client::onFocuRqc() {
 }
 
 void Client::onPutRqc(int32_t card) {
+    // check if the game is playing
+    if (room->getState() != PLAY) {
+        send("44");
+        return;
+    }   
+
     // check if the client has this card
     if(!count(cards->begin(), cards->end(), card)) {
-        send("ERRO 4");
+        send("ERRO 41");
         return;
     }
 
     // check if the card played is the smallest card of the player
     if(card != *cards->begin()) {
-        send("ERRO 5");
+        send("ERRO 42");
         return;
     }
 
