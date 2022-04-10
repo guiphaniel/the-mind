@@ -126,33 +126,29 @@ void Room::putCard(int32_t idClient, int32_t card) {
     for(Client* c : *clients) {
         c->send("PUT_ " + to_string(idClient) + " " + to_string(card) + '\0');
         c->setWaitingForAck(true);
-    }
+    }    
 
-    // check if it's the last card to play
-    bool lastCard = true;
-    for(Client* client : *clients) {
-        if(!client->getCards()->empty())
-            lastCard = false;
-    }
-
-    if (lastCard)
-    {
-        cout << "Round : " << MAX_LEVELS - levels.size() + 1 << "/" << MAX_LEVELS << " has been won in the room " << id << " " << name << endl;
-        deal();
-        return;
-    }
-    
-
-    // check if other payers have lower cards
+    // check if other players have lower cards
     PlayerCardsMapProto map;
     for(Client* client : *clients) {
+        vector<int>* clientCards = client->getCards();
         CardsListProto lowerCards;
-        for(int32_t c : *client->getCards()) {
+
+        // find, for each client, their lower cards
+        for(int32_t c : *clientCards) {
             if(c < card) {
                 CardProto* cardProto = lowerCards.add_card();
                 cardProto->set_value(c);
             }
         }
+        
+        // remove the lower cards from the client's cards
+        for (size_t i = 0; i < lowerCards.card_size(); i++)
+        {
+            clientCards->erase(clientCards->begin());
+        }
+        
+        // add the lower cards to the proto map
         if (lowerCards.card_size() > 0) {
             auto& mapCards = *map.mutable_cards();
             mapCards[client->getId()] = lowerCards;
@@ -172,5 +168,19 @@ void Room::putCard(int32_t idClient, int32_t card) {
         if(nbLives <= 0) {
             state = WAIT;
         }
+    }
+
+    // check if the players don't have anymore cards
+    bool lastCard = true;
+    for(Client* client : *clients) {
+        if(!client->getCards()->empty())
+            lastCard = false;
+    }
+
+    if (lastCard)
+    {
+        cout << "Round : " << MAX_LEVELS - levels.size() + 1 << "/" << MAX_LEVELS << " has been won in the room " << id << " " << name << endl;
+        deal();
+        return;
     }
 }
