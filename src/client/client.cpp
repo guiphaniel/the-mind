@@ -44,7 +44,18 @@ void Client::run() {
             //La connexion est coupee du cote du client ou erreur
             cout << "Client disconnected of fd : " << socket->getSockfd() << endl;
 
-            delete this;
+            if(room == nullptr || room->getClients()->size() <= 1) // the client was not in a room, or was the last one in it
+                delete this;
+            else {
+                room->setState(LEFP);
+
+                socket->close();
+                
+                for(Client* c : *room->getClients()){
+                    c->send("LEFP " + to_string(id) + '\0');
+                    c->setWaitingForAck(true);
+                }
+            }
 
             return;
         }
@@ -74,6 +85,9 @@ void Client::run() {
             thread(&Client::onShurRqc, this).detach();
         } else if(token == "OK__" || token == "NOK_") {
             thread(&Client::onShurRpl, this, token).detach();
+        } else if(token == "RECO") {
+            vector<string> args = splitString(msg, " ");
+            thread(&Client::onRecoRpl, this, stoi(args[0]), stoi(args[1])).detach();
         } else if(token == "ACK_") {
             setWaitingForAck(false);
         } else {
@@ -83,6 +97,9 @@ void Client::run() {
 }
 
 void Client::send(const std::string& msg) {
+    if(socket == nullptr || !socket->valid())
+        return;
+
     unique_lock<std::mutex> lk(waitMutex);
     waitCv.wait(lk, [&]{return !isWaitingForAck();});
     socket->send(msg);
@@ -241,12 +258,22 @@ void Client::onFocuRqc() {
 
     // check if all clients are focused
     for(Client* c : *room->getClients()) {
+        if(!c->getSocket()->valid()) // if the player is disconnected, skip him
+            continue;
+
         if(!c->isFocused())
             return;
     }
     
     // if so, resume the game
     room->setState(PLAY);
+    
+    // if some clients were disconnected, delete them
+    for(Client* c : *room->getClients()) {
+        if(!c->getSocket()->valid())
+            delete c;
+    }
+
     for(Client* c : *room->getClients()) {
         c->setFocus(false);
         c->send("RESM");
@@ -336,6 +363,58 @@ void Client::onShurRpl(string reply) {
 
         room->setState(PLAY);
     }
+}
+
+void Client::onRecoRpl(int32_t roomId, int32_t clientId) {
+    // check if the romm exists
+    Room* room = Room::findRoomById(rooms, roomId);
+    if (room == nullptr) {
+        send("ERRO 31");
+        return;
+    }
+    
+    // check if the room is still waiting for him
+    Client* client = room->findPlayerById(clientId);
+    if (client == nullptr) {
+        send("ERRO 34");
+        return;
+    }
+    
+    // replace the client
+    pseudo = client->pseudo;
+    cards = client->cards;
+    room = client->room;
+    delete client;
+    room->getClients()->push_back(this);
+
+    cout << "Client " << id << " " << pseudo << " come back in the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
+
+    // send the room infos to the reconnecting client
+    PlayerCardsMapProto playersCards;
+    for(Client* client : *room->getClients()) {
+        CardsListProto playerCards;
+        for(int32_t card : *client->getCards()) {
+            CardProto* cardProto = playerCards.add_card();
+            cardProto->set_value(card);
+        }
+        auto& mapCards = *playersCards.mutable_cards();
+        mapCards[client->getId()] = playerCards;
+    }
+
+    send("STAT " + to_string(room->getCurrentLevel()) + " " + to_string(room->getLastPlayedCard()) + " " + to_string(room->getNbLives()) + " " + to_string(room->getNbShurs()) + " " + playersCards.SerializeAsString());
+    setWaitingForAck(true);
+    
+    // warn other clients
+    for(Client * c : *room->getClients()) {
+        if(c == this)
+            continue;
+
+        send("RECP " + to_string(id));
+        c->setWaitingForAck(true);
+    }
+
+    //resume the game
+    room->setState(PLAY);
 }
 
 vector<string> splitString(string str, string delimiter)

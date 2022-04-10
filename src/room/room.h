@@ -52,6 +52,14 @@ public:
     RoomState getState() const { return state; }
     void setState(const RoomState &state_) { state = state_; }
 
+    int32_t getCurrentLevel() { return MAX_LEVELS - levels.size(); }
+
+    int32_t getLastPlayedCard() { return playedCards.back(); }
+
+    int32_t getNbLives() const { return nbLives; }
+
+    int32_t getNbShurs() const { return nbShurs; }
+
     static Room* findRoomById(vector<Room*>* rooms, int32_t id);
 
     Client* findPlayerById(int32_t id);
