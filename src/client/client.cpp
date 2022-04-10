@@ -49,6 +49,25 @@ void Client::run() {
             if(room == nullptr || room->getClients()->size() <= 1) // the client was not in a room, or was the last one in it
                 delete this;
             else {
+                // check if all remaining clients are disconnected
+                bool allDisconnected = true;
+                for(Client* c : *room->getClients()) {
+                    if (c->getSocket()->valid())
+                    {
+                        allDisconnected = false;
+                        break;
+                    }
+                }
+
+                // if so, delete them all.
+                if (allDisconnected)
+                {
+                    for(Client* c : *room->getClients())
+                        delete c;
+                    return;
+                }
+                
+                // else, jsut warn others that this client disconnected
                 room->setState(LEFP);
 
                 socket->close();
@@ -221,6 +240,7 @@ void Client::onQuitRqc() {
     vector<Client*>* roomClients = room->getClients();
     roomClients->erase(std::remove(clients->begin(), clients->end(), this), clients->end());
 
+    // if the client was the last one in the room, remove the room
     if(roomClients->size() <= 0) {
         rooms->erase(std::remove(rooms->begin(), rooms->end(), room), rooms->end());
         cout << "Client " << id << " " << pseudo << " has left the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
@@ -228,6 +248,24 @@ void Client::onQuitRqc() {
         room = nullptr;
         send("ACK_");
         return;
+    }
+
+    // check if all remaining clients in the room are disconnected
+    bool allDisconnected = true;
+    for(Client* c : *room->getClients()) {
+        if (c->getSocket()->valid())
+        {
+            allDisconnected = false;
+            break;
+        }
+    }
+
+    // if so, delete them all.
+    if (allDisconnected)
+    {
+        for(Client* c : *room->getClients()) {
+            delete c;
+        }
     }
     
     send("ACK_");
@@ -237,9 +275,9 @@ void Client::onQuitRqc() {
         c->setWaitingForAck(true);
     }
 
-    cout << "Client " << id << " " << pseudo << " has left the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
-    
     room = nullptr;
+    
+    cout << "Client " << id << " " << pseudo << " has left the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
 }
 
 void Client::onFocuRqc() {

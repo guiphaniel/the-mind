@@ -131,6 +131,7 @@ void stdsock::Socket::close() {
     }
     // call std::basic_fstream<CharT,Traits>::close
     ::close(sockfd);
+    sockfd = -1;
 }
 
 void stdsock::StreamSocket::setBlocking() {
