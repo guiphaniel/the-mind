@@ -284,7 +284,7 @@ void Client::onFocuRqc() {
 void Client::onPutRqc(int32_t card) {
     // check if the game is playing
     if (room->getState() != PLAY) {
-        send("44");
+        send("ERRO 43");
         return;
     }   
 
