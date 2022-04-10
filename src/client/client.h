@@ -47,7 +47,7 @@ private:
     void onPutRqc(int32_t card);
     void onShurRqc();
     void onShurRpl(string reply);
-    void onRecoRpl(int32_t roomId, int32_t clientId);
+    void onRecoRqc(int32_t roomId, int32_t clientId);
 public:
     Client(vector<Client*>* clients, vector<Room*>* rooms);
     ~Client();

@@ -87,7 +87,7 @@ void Client::run() {
             thread(&Client::onShurRpl, this, token).detach();
         } else if(token == "RECO") {
             vector<string> args = splitString(msg, " ");
-            thread(&Client::onRecoRpl, this, stoi(args[0]), stoi(args[1])).detach();
+            thread(&Client::onRecoRqc, this, stoi(args[0]), stoi(args[1])).detach();
         } else if(token == "ACK_") {
             setWaitingForAck(false);
         } else {
@@ -365,7 +365,7 @@ void Client::onShurRpl(string reply) {
     }
 }
 
-void Client::onRecoRpl(int32_t roomId, int32_t clientId) {
+void Client::onRecoRqc(int32_t roomId, int32_t clientId) {
     // check if the romm exists
     Room* room = Room::findRoomById(rooms, roomId);
     if (room == nullptr) {
