@@ -70,7 +70,7 @@ public:
     vector<int32_t>* getCards() const { return cards; }
 
     void run();
-    void send(const std::string& msg);
+    int send(const std::string& msg);
 
     bool isFocused() const { return focus; }
     void setFocus(bool focus_) { focus = focus_; }

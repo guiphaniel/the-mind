@@ -44,6 +44,8 @@ void Client::run() {
             //La connexion est coupee du cote du client ou erreur
             cout << "Client disconnected of fd : " << socket->getSockfd() << endl;
 
+            socket->close();
+
             if(room == nullptr || room->getClients()->size() <= 1) // the client was not in a room, or was the last one in it
                 delete this;
             else {
@@ -96,13 +98,13 @@ void Client::run() {
     }
 }
 
-void Client::send(const std::string& msg) {
+int Client::send(const std::string& msg) {
     if(socket == nullptr || !socket->valid())
-        return;
+        return -1;
 
     unique_lock<std::mutex> lk(waitMutex);
     waitCv.wait(lk, [&]{return !isWaitingForAck();});
-    socket->send(msg);
+    return socket->send(msg);
 }
 
 void Client::onDiscRqc() {
