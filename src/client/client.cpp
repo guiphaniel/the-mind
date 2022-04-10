@@ -366,28 +366,31 @@ void Client::onShurRpl(string reply) {
 }
 
 void Client::onRecoRqc(int32_t roomId, int32_t clientId) {
-    // check if the romm exists
+     cout << "Client " << to_string(clientId) << " asked for a reconnection in the room " << to_string(roomId) << endl;
+
+    // check if the room exists
     Room* room = Room::findRoomById(rooms, roomId);
     if (room == nullptr) {
         send("ERRO 31");
         return;
     }
     
-    // check if the room is still waiting for him
+    // check if he was in the room, and if the room is still waiting for him
     Client* client = room->findPlayerById(clientId);
     if (client == nullptr) {
         send("ERRO 34");
         return;
     }
     
-    // replace the client
+    // replace the old client by this new one
+    id = client->id;
     pseudo = client->pseudo;
     cards = client->cards;
     room = client->room;
     delete client;
     room->getClients()->push_back(this);
 
-    cout << "Client " << id << " " << pseudo << " come back in the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
+    cout << "Client " << id << " " << pseudo << " reconnected in the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
 
     // send the room infos to the reconnecting client
     PlayerCardsMapProto playersCards;
