@@ -75,6 +75,9 @@ public:
     bool isFocused() const { return focus; }
     void setFocus(bool focus_) { focus = focus_; }
 
+    bool isOkForShur() const { return shur; }
+    void setShur(bool shur_) { shur = shur_; }
+
     bool isWaitingForAck() const { return waitingForAck; }
     void setWaitingForAck(bool waitingForAck_) { 
         {

@@ -68,6 +68,7 @@ public:
     void start();
     void deal();
     void putCard(int32_t idClient, int32_t card);
+    void onShurRpl(string reply);
 
 private:
     static int32_t nextId;

@@ -66,7 +66,7 @@ void Room::start() {
 }
 
 void Room::deal() {
-    cout << "Dealing the cards for the room " << id << " " << name << ". Round : " << MAX_LEVELS - levels.size() + 1 << "/" << MAX_LEVELS << endl;
+    cout << "Dealing the cards for the room " << id << " " << name << ". Round : " << MAX_LEVELS - levels.size() + 2 << "/" << MAX_LEVELS << endl;
     // put the played cards back in the main deck
     while(!playedCards.empty()) {
         cards.push_back(playedCards.back());
@@ -167,6 +167,7 @@ void Room::putCard(int32_t idClient, int32_t card) {
         // if the game is lost, go back to waiting room
         if(nbLives <= 0) {
             state = WAIT;
+            return;
         }
     }
 
@@ -182,5 +183,64 @@ void Room::putCard(int32_t idClient, int32_t card) {
         cout << "Round : " << MAX_LEVELS - levels.size() + 1 << "/" << MAX_LEVELS << " has been won in the room " << id << " " << name << endl;
         deal();
         return;
+    }
+}
+
+void Room::onShurRpl(string reply) {
+    if (reply == "OK__") {
+        // check if everybody is ok to use the shur
+        for(Client * c : *clients) {
+            if(c->isOkForShur() == false)
+                return;
+        }
+
+        // if so, set everyone's shur to false again...
+        for(Client * c : *clients) {
+            c->setShur(false);
+        }
+
+        // set the state back to play
+        state = PLAY;
+
+        // and send the result
+        PlayerCardsMapProto map;
+        auto& mapCards = *map.mutable_cards();
+        for(Client * c : *clients) {
+            CardsListProto lowestCard;
+            CardProto* card = lowestCard.add_card();
+            card->set_value(*c->getCards()->begin());
+
+            // remove the first card
+            if(!c->getCards()->empty())
+                c->getCards()->erase(c->getCards()->begin());
+
+            mapCards[c->getId()] = lowestCard;
+        }
+
+        for(Client * c : *clients) {
+            c->send("RES_ OK__ " + map.SerializeAsString());
+            c->setWaitingForAck(true);
+        }
+
+        // check if the players don't have anymore cards
+        bool lastCard = true;
+        for(Client* client : *clients) {
+            if(!client->getCards()->empty())
+                lastCard = false;
+        }
+
+        if (lastCard)
+        {
+            cout << "Round : " << MAX_LEVELS - levels.size() + 1 << "/" << MAX_LEVELS << " has been won in the room " << id << " " << name << endl;
+            deal();
+            return;
+        }
+    } else {
+        state = PLAY;
+
+        for(Client * c : *clients) {
+            c->send("RES_ NOK_ ");
+            c->setWaitingForAck(true);
+        }
     }
 }

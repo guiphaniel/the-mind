@@ -216,10 +216,10 @@ void Client::onJoinRqc(string msg) {
 
 void Client::onQuitRqc() {
     cards->clear();
-    vector<Client*>* clients = room->getClients();
-    clients->erase(std::remove(clients->begin(), clients->end(), this), clients->end());
+    vector<Client*>* roomClients = room->getClients();
+    roomClients->erase(std::remove(clients->begin(), clients->end(), this), clients->end());
 
-    if(clients->size() <= 0) {
+    if(roomClients->size() <= 0) {
         rooms->erase(std::remove(rooms->begin(), rooms->end(), room), rooms->end());
         cout << "Client " << id << " " << pseudo << " has left the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
         delete room;
@@ -329,40 +329,9 @@ void Client::onShurRqc() {
 void Client::onShurRpl(string reply) {
     if (reply == "OK__") {
         shur = true;
-
-        // check if everybody is ok to use the shur
-        for(Client * c : *room->getClients()) {
-            if(c->shur == false)
-                return;
-        }
-
-        // if so, send the result
-        PlayerCardsMapProto map;
-        auto& mapCards = *map.mutable_cards();
-        for(Client * c : *room->getClients()) {
-            CardsListProto lowestCard;
-            CardProto* card = lowestCard.add_card();
-            card->set_value(*c->cards->begin());
-
-            // remove the first card
-            if(!c->cards->empty())
-                c->cards->erase(c->cards->begin());
-
-            mapCards[c->id] = lowestCard;
-        }
-
-        for(Client * c : *room->getClients()) {
-            c->send("RES_ OK__ " + map.SerializeAsString());
-        }
-
-        room->setState(PLAY);
-    } else {
-        for(Client * c : *room->getClients()) {
-            c->send("RES_ NOK_ ");
-        }
-
-        room->setState(PLAY);
     }
+
+    room->onShurRpl(reply);
 }
 
 void Client::onRecoRqc(int32_t roomId, int32_t clientId) {
