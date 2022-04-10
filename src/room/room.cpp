@@ -128,7 +128,7 @@ void Room::putCard(int32_t idClient, int32_t card) {
         c->setWaitingForAck(true);
     }    
 
-    // check if other players have lower cards
+    // check if other players have lower cards (bad order)
     PlayerCardsMapProto map;
     for(Client* client : *clients) {
         vector<int>* clientCards = client->getCards();
@@ -141,9 +141,9 @@ void Room::putCard(int32_t idClient, int32_t card) {
                 cardProto->set_value(c);
             }
         }
-        
+
         // remove the lower cards from the client's cards
-        for (size_t i = 0; i < lowerCards.card_size(); i++)
+        for (size_t i = 0; i < (unsigned)lowerCards.card_size(); i++)
         {
             clientCards->erase(clientCards->begin());
         }
