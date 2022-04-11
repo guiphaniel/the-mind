@@ -156,6 +156,7 @@ void Room::putCard(int32_t idClient, int32_t card) {
     }
 
     // if so, trigger BADO
+    cout << "Player " << idClient << " caused a bad order in the room " << id << " " << name << endl;
     if (map.cards_size() > 0)
     {
         for(Client* client : *clients) {
