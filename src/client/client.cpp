@@ -317,6 +317,7 @@ void Client::onFocuRqc() {
     for(Client* c : *room->getClients()) {
         c->setFocus(false);
         c->send("RESM");
+        c->setWaitingForAck(true);
     }
     cout << "Everyone in room " << room->getId() << " " << room->getName() << " is now focused. Resuming the game..." << endl;
 }
@@ -396,6 +397,7 @@ void Client::onRecoRqc(int32_t roomId, int32_t clientId) {
     pseudo = client->pseudo;
     cards = client->cards;
     room = client->room;
+    focus = true;
     delete client;
     room->getClients()->push_back(this);
 
@@ -417,16 +419,39 @@ void Client::onRecoRqc(int32_t roomId, int32_t clientId) {
     setWaitingForAck(true);
     
     // warn other clients
+    PlayerProto player;
+    player.set_id(id);
+    player.set_pseudo(pseudo);
     for(Client * c : *room->getClients()) {
         if(c == this)
             continue;
 
-        send("RECP " + to_string(id));
+        send("RECP " + to_string(cards->size()) + " " + player.SerializeAsString());
         c->setWaitingForAck(true);
     }
 
-    //resume the game
-    room->setState(PLAY);
+    //check if every connected client is focused
+    bool allFocused = true;
+    for(Client * c : *room->getClients()) {
+        if(!c->getSocket()->valid())
+            continue;
+
+        if(!c->isFocused()) {
+            allFocused = false;
+            break;
+        }
+    }
+
+    //if so, resume the game
+    if (allFocused)
+    {
+        room->setState(PLAY);
+        for(Client * c : *room->getClients()) {
+            c->send("RESM");
+            c->setWaitingForAck(true);
+        }
+    }
+
 }
 
 vector<string> splitString(string str, string delimiter)
