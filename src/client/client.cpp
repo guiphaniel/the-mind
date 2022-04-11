@@ -60,9 +60,10 @@ void Client::run() {
                 }
 
                 // if so, delete them all.
+                vector<Client*> roomClientsCopy = *room->getClients();
                 if (allDisconnected)
                 {
-                    for(Client* c : *room->getClients())
+                    for(Client* c : roomClientsCopy)
                         delete c;
                     return;
                 }
@@ -263,7 +264,8 @@ void Client::onQuitRqc() {
     // if so, delete them all.
     if (allDisconnected)
     {
-        for(Client* c : *room->getClients()) {
+        vector<Client*> roomClientsCopy = *room->getClients();
+        for(Client* c : roomClientsCopy) {
             delete c;
         }
     }
