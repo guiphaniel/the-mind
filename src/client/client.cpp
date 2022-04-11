@@ -239,7 +239,7 @@ void Client::onJoinRqc(string msg) {
 void Client::onQuitRqc() {
     cards->clear();
     vector<Client*>* roomClients = room->getClients();
-    roomClients->erase(std::remove(clients->begin(), clients->end(), this), clients->end());
+    roomClients->erase(std::remove(roomClients->begin(), roomClients->end(), this), roomClients->end());
 
     // if the client was the last one in the room, remove the room
     if(roomClients->size() <= 0) {
@@ -277,9 +277,9 @@ void Client::onQuitRqc() {
         c->setWaitingForAck(true);
     }
 
-    room = nullptr;
-    
     cout << "Client " << id << " " << pseudo << " has left the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
+    
+    room = nullptr;
 }
 
 void Client::onFocuRqc() {
