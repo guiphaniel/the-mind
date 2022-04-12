@@ -257,6 +257,7 @@ void Client::onQuitRqc() {
 
     // check if all remaining clients in the room are disconnected
     bool allDisconnected = true;
+    room->clientsMutex.lock();
     for(Client* c : *room->getClients()) {
         if (c->getSocket()->valid())
         {
@@ -264,22 +265,27 @@ void Client::onQuitRqc() {
             break;
         }
     }
+    room->clientsMutex.unlock();
 
     // if so, delete them all.
     if (allDisconnected)
     {
+        room->clientsMutex.lock();
         vector<Client*> roomClientsCopy = *room->getClients();
         for(Client* c : roomClientsCopy) {
             delete c;
         }
+        room->clientsMutex.unlock();
     }
     
     send("ACK_");
 
+    room->clientsMutex.lock();
     for(Client* c : *room->getClients()){
         c->send("LEFP " + to_string(id) + '\0');
         c->setWaitingForAck(true);
     }
+    room->clientsMutex.unlock();
 
     cout << "Client " << id << " " << pseudo << " has left the room " << room->getId() << " " << room->getName() << " " << room->getClients()->size() << "/" << room->getNbMaxPlayers() << endl;
     
