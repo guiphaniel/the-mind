@@ -79,7 +79,7 @@ private:
     int32_t nbMaxPlayers;
     vector<Client*>* clients;
     RoomState state;
-    stack<Level> levels;
+    vector<Level> levels;
     int32_t nbLives;
     int32_t nbShurs;
     vector<int32_t> cards;

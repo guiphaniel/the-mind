@@ -42,13 +42,13 @@ void Room::init() {
     }
     
     // init levels bonuses
-    levels.push(Level{ NONE }); //first level
+    levels.push_back(Level{ NONE }); //first level
     for (size_t i = 0; i < MAX_LEVELS; i++)
     {
         if (i < 10)
-            levels.push(Level{ static_cast<Bonus>(NONE + i % 3) });
+            levels.push_back(Level{ static_cast<Bonus>(NONE + i % 3) });
         else
-            levels.push(Level{ NONE });
+            levels.push_back(Level{ NONE });
     }
 }
 
@@ -78,8 +78,8 @@ void Room::deal() {
     shuffle(cards.begin(), cards.end(), default_random_engine(seed));
     
     // get the bonus corresponding to the level
-    Bonus bonus = levels.top().bonus;
-    levels.pop();
+    Bonus bonus = levels.front().bonus;
+    levels.erase(levels.begin());
 
     if (bonus == LIFE)
     {
@@ -119,6 +119,8 @@ void Room::deal() {
         client->send("DEAL " + to_string(bonus) + " " + cardsListProto.SerializeAsString());
         client->setWaitingForAck(true);
     }
+
+    cout << "Dealing the cards in the room " << id << " " << name << " and bonus is " << bonus << endl;
 }
 void Room::putCard(int32_t idClient, int32_t card) {
     playedCards.push_back(card);
