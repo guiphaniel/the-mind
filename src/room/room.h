@@ -70,6 +70,8 @@ public:
     void putCard(int32_t idClient, int32_t card);
     void onShurRpl(string reply);
 
+    mutex clientsMutex;
+
 private:
     static int32_t nextId;
     int32_t id;

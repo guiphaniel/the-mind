@@ -1,7 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/guiphaniel/documents/iut/semestre4/theMind'
 /usr/lib/qt5/bin/qmake -o Makefile theMindServer.pro
- 
 g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o socket.o libs/socket/socket.cpp
 g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o server.o src/server.cpp
 g++ -c -pipe -g -std=gnu++11 -pthread -D_REENTRANT -Wall -W -fPIC  -I. -Ilibs/socket -Isrc/protos -Isrc/client -Isrc/room -isystem /usr/local/include -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o client.o src/client/client.cpp

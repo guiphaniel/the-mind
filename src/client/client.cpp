@@ -19,7 +19,9 @@ Client::~Client() {
     {
         // leave the room
         vector<Client*>* roomClients = room->getClients();
+        room->clientsMutex.lock();
         roomClients->erase(std::remove(roomClients->begin(), roomClients->end(), this), roomClients->end());
+        room->clientsMutex.unlock();
 
         // if th room is empty, remove it
         if(roomClients->size() <= 0) {
@@ -239,7 +241,9 @@ void Client::onJoinRqc(string msg) {
 void Client::onQuitRqc() {
     cards->clear();
     vector<Client*>* roomClients = room->getClients();
+    room->clientsMutex.lock();
     roomClients->erase(std::remove(roomClients->begin(), roomClients->end(), this), roomClients->end());
+    room->clientsMutex.unlock();
 
     // if the client was the last one in the room, remove the room
     if(roomClients->size() <= 0) {
