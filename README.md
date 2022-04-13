@@ -29,3 +29,11 @@ Vous trouverez ici le code source pour le serveur, en C++. Le code source du cli
 * Compiler le projet :
 
         make
+
+## Architecture
+
+![Project UML](/assets/images/project_uml.png)
+
+## Protocole
+
+![Protocol flow](/assets/images/protocol_flow.png)
